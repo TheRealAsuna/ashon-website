@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>ashon – Socials</title>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap');
+    body {
+        background-color: #000000;
+        color: #FF13F0;
+        font-family: 'Montserrat', sans-serif;
+        margin: 0;
+        line-height: 1.6;
+        font-weight: 400;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+    }
+    a {
+        color: #FF13F0;
+        text-decoration: none;
+        transition: color 0.3s ease;
+        display: flex;
+        align-items: center;
+        gap: 0.4rem;
+        position: relative;
+        padding-bottom: 0.25rem;
+        border-bottom: 3px solid transparent;
+    }
+    a::after {
+        content: '';
+        position: absolute;
+        width: 0;
+        height: 3px;
+        bottom: 0;
+        left: 50%;
+        background-color: #e213db;
+        transition: all 0.3s ease;
+        border-radius: 2px;
+        transform: translateX(-50%);
+    }
+    a:hover::after,
+    a:focus::after {
+        width: 80%;
+    }
+    a:hover, a:focus {
+        color: #e213db;
+        outline: none;
+        transform: translateY(-4px);
+    }
+    header {
+        max-width: 1600px;
+        width: 95%;
+        margin: 3rem auto 2rem auto;
+        padding: 0 2rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        user-select: none;
+    }
+    .title {
+        font-weight: 700;
+        font-size: 3.5rem;
+        letter-spacing: 0.15em;
+        color: #FF13F0;
+        user-select: text;
+        flex-shrink: 0;
+        cursor: pointer;
+    }
+    .title:hover {
+        color: #e213db;
+    }
+    nav {
+        display: flex;
+        gap: 3rem;
+        font-weight: 700;
+        font-size: 1.3rem;
+        justify-content: flex-end;
+        flex-grow: 1;
+        flex-wrap: nowrap;
+    }
+    nav a {
+        padding-bottom: 0.25rem;
+        border-bottom: 3px solid transparent;
+        transition: border-color 0.3s ease, color 0.3s ease;
+    }
+    nav a[aria-current="page"] {
+        border-bottom-color: #e213db;
+        color: #e213db;
+    }
+    nav a:hover:not([aria-current="page"]),
+    nav a:focus:not([aria-current="page"]) {
+        border-bottom-color: #e213db;
+        color: #e213db;
+        outline: none;
+    }
+    main {
+        max-width: 1400px;
+        width: 90%;
+        margin: 0 auto 4rem auto;
+        padding: 0 2rem;
+        flex-grow: 1;
+    }
+    h1 {
+        font-size: 3rem;
+        font-weight: 700;
+        margin-bottom: 2rem;
+        text-align: center;
+        color: #FF13F0;
+    }
+    .caption {
+        color: #FF13F0;
+        margin-top: 1.3rem;
+        margin-bottom: 2rem;
+        text-align: center;
+        font-size: 1.3rem;
+        font-weight: 600;
+        letter-spacing: 0.03em;
+    }
+    .insta-latest {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 2.5rem;
+    }
+    .insta-latest iframe {
+        border: none;
+        border-radius: 1.2rem;
+        box-shadow: 0 2px 32px rgba(255,19,240,0.09);
+        width: 360px;
+        height: 470px;
+        background: #000;
+    }
+    .insta-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 1.5rem;
+        justify-items: center;
+    }
+    .insta-grid a {
+        display: block;
+        border-radius: 1.2rem;
+        overflow: hidden;
+        box-shadow: 0 2px 20px rgba(255,19,240,0.08);
+        background: #181818;
+        transition: transform 0.25s cubic-bezier(.4,2,.6,1), box-shadow 0.3s;
+        border: 2px solid transparent;
+        aspect-ratio: 1/1;
+        max-width: 260px;
+        min-width: 180px;
+        width: 100%;
+        cursor: pointer;
+    }
+    .insta-grid a:hover, .insta-grid a:focus {
+        transform: scale(1.055);
+        box-shadow: 0 6px 35px #ff13f060;
+        border-color: #e213db;
+        outline: none;
+    }
+    .insta-grid iframe {
+        width: 100%;
+        height: 100%;
+        min-height: 260px;
+    }
+    /* Footer aus vorherigem Design */
+    footer {
+        background-color: #000000;
+        color: #FF13F0;
+        padding: 3rem 2rem;
+        font-size: 1rem;
+        border-top: 1px solid #330033;
+        margin-top: auto;
+        user-select: none;
+        max-width: 1600px;
+        width: 95%;
+        margin-left: auto;
+        margin-right: auto;
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 2rem;
+        box-sizing: border-box;
+        align-items: center;
+    }
+    .footer-logo {
+        font-weight: 700;
+        font-size: 2.5rem;
+        letter-spacing: 0.2em;
+        color: #FF13F0;
+        user-select: text;
+        flex: 1 1 200px;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+    }
+    .footer-contact {
+        flex: 2 1 600px;
+        display: flex;
+        justify-content: space-between;
+        line-height: 1.6;
+    }
+    .footer-contact address {
+        font-style: normal;
+    }
+    .footer-contact .address, 
+    .footer-contact .hours {
+        flex: 1;
+        padding-right: 2rem;
+    }
+    .footer-socials {
+        flex: 1 1 80px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 1rem;
+    }
+    .footer-socials h3 {
+        font-weight: 600;
+        font-size: 1.2rem;
+        margin: 0;
+        padding: 0;
+        color: #e213db;
+        text-align: center;
+    }
+    .social-links {
+        display: flex;
+        gap: 1rem;
+    }
+    .social-links a {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0.3rem;
+        border-radius: 0.4rem;
+        border: 1.5px solid #FF13F0;
+        transition: background-color 0.3s ease, border-color 0.3s ease;
+        text-decoration: none;
+    }
+    .social-links a:hover,
+    .social-links a:focus {
+        background-color: #e213db;
+        border-color: #e213db;
+        outline: none;
+    }
+    .social-links a svg {
+        width: 28px;
+        height: 28px;
+        fill: #FF13F0;
+        transition: fill 0.3s ease;
+    }
+    .social-links a:hover svg, .social-links a:focus svg {
+        fill: #000000;
+    }
+    @media (max-width: 900px) {
+        nav { gap: 1.5rem; font-size: 1.1rem;}
+        .insta-grid { grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));}
+        footer {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 2.5rem;
+        }
+        .footer-contact { flex-direction: column;}
+        .footer-contact .address, .footer-contact .hours { padding-right: 0;margin-bottom: 1.5rem;}
+        .footer-socials { flex-direction: row; gap: 2rem;align-items: center;}
+    }
+    @media (max-width: 700px) {
+        nav { gap: 1.2rem; font-size: 1.1rem;}
+        main { width: 95%; padding: 0 0.5rem;}
+        .insta-grid { grid-template-columns: 1fr;}
+    }
+</style>
+</head>
+<body>
+
+<header>
+<a href="index.html" aria-label="Startseite">
+    <img src="bilder/logo.png" alt="logo" class="logo-img" />
+</a>
+    <nav aria-label="Hauptnavigation">
+        <a href="ueber-uns.html">Über uns</a>
+        <a href="preise.html">Preise</a>
+        <a href="socials.html" aria-current="page">Socials</a>
+        <a href="kontakt.html">Kontakt</a>
+    </nav>
+</header>
+
+<main>
+    <h1>Social Media & Inspiration</h1>
+    <div class="caption">Unser aktuellster Instagram-Post:</div>
+    <div class="insta-latest">
+        <iframe src="https://www.instagram.com/p/DNDUbbTtaX2/embed" allowtransparency="true" allowfullscreen="true" loading="lazy"></iframe>
+    </div>
+    <div class="caption">Mehr Inspiration auf Instagram</div>
+    <div class="insta-grid">
+        <a href="https://www.instagram.com/sophie.tzionas/p/DMpVSC6Ktai/" target="_blank" rel="noopener noreferrer" aria-label="Instagram-Post 1">
+            <iframe src="https://www.instagram.com/p/DMpVSC6Ktai/embed" allowtransparency="true" allowfullscreen="true" loading="lazy"></iframe>
+        </a>
+        <a href="https://www.instagram.com/sophie.tzionas/p/DMj1etPKzrc/" target="_blank" rel="noopener noreferrer" aria-label="Instagram-Post 2">
+            <iframe src="https://www.instagram.com/p/DMj1etPKzrc/embed" allowtransparency="true" allowfullscreen="true" loading="lazy"></iframe>
+        </a>
+        <a href="https://www.instagram.com/sophie.tzionas/p/DMhNiDuqdeW/" target="_blank" rel="noopener noreferrer" aria-label="Instagram-Post 3">
+            <iframe src="https://www.instagram.com/p/DMhNiDuqdeW/embed" allowtransparency="true" allowfullscreen="true" loading="lazy"></iframe>
+        </a>
+        <a href="https://www.instagram.com/sophie.tzionas/p/DMcjuIbKndE/" target="_blank" rel="noopener noreferrer" aria-label="Instagram-Post 4">
+            <iframe src="https://www.instagram.com/p/DMcjuIbKndE/embed" allowtransparency="true" allowfullscreen="true" loading="lazy"></iframe>
+        </a>
+        <a href="https://www.instagram.com/sophie.tzionas/p/DMH3jZWqsjB/" target="_blank" rel="noopener noreferrer" aria-label="Instagram-Post 5">
+            <iframe src="https://www.instagram.com/p/DMH3jZWqsjB/embed" allowtransparency="true" allowfullscreen="true" loading="lazy"></iframe>
+        </a>
+    </div>
+</main>
+
+<footer class="main-footer">
+    <div class="footer-col footer-logo-col">
+        <img src="bilder/logo.png" alt="ashon Logo" class="footer-logo-img">
+    </div>
+    <div class="footer-col footer-address-col">
+        <div class="footer-address">
+            <div class="footer-name">Sophie Tzionas</div>
+            <div>Usterstrasse 21</div>
+            <div>8614 Bertschikon</div>
+            <div class="footer-contact-light">+41 79 645 71 55</div>
+            <div class="footer-contact-light">info@ashon.ch</div>
+        </div>
+    </div>
+    <div class="footer-col footer-social-col">
+        <div class="footer-instagram">
+            <span class="footer-instagram-text">Folgen Sie uns</span>
+            <a href="https://www.instagram.com/sophie.tzionas/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="footer-instagram-link">
+                <svg viewBox="0 0 24 24" width="46" height="46" fill="#FF13F0">
+                    <path d="M7.75 2h8.5A5.75 5.75 0 0122 7.75v8.5A5.75 5.75 0 0116.25 22h-8.5A5.75 5.75 0 012 16.25v-8.5A5.75 5.75 0 017.75 2zm0 1.5A4.25 4.25 0 003.5 7.75v8.5A4.25 4.25 0 007.75 20.5h8.5a4.25 4.25 0 004.25-4.25v-8.5a4.25 4.25 0 00-4.25-4.25h-8.5zm8.75 3a1 1 0 110 2 1 1 0 010-2zM12 7a5 5 0 110 10 5 5 0 010-10zm0 1.5a3.5 3.5 0 100 7 3.5 3.5 0 000-7z"/>
+                </svg>
+            </a>
+        </div>
+    </div>
+</footer>
+
+<style>
+.main-footer {
+    width: 100%;
+    background: #000;
+    color: #FF13F0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2.5rem 4vw;
+    max-width: 1600px;
+    margin: 0 auto;
+    box-sizing: border-box;
+}
+.footer-col {
+    flex: 1 1 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 160px;
+}
+.footer-logo-col {
+    justify-content: flex-start;
+}
+.footer-logo-img {
+    height: 6rem; /* extra groß */
+    width: auto;
+    display: block;
+}
+.footer-address-col {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.footer-address {
+    text-align: center;
+    font-size: 1.22rem;
+    line-height: 1.55;
+    color: #FF13F0;
+}
+.footer-name {
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    margin-bottom: 0.2em;
+    font-size: 1.20rem;
+    color: #FF13F0;
+}
+.footer-contact-light {
+    font-size: 1.13rem;
+    color: #FF13F0;
+    font-weight: 400;
+    margin-top: 0.05em;
+}
+.footer-social-col {
+    flex-direction: row;
+    justify-content: flex-end;
+}
+.footer-instagram {
+    display: flex;
+    align-items: center;
+    gap: 1.08rem;
+}
+.footer-instagram-text {
+    font-weight: 600;
+    color: #e213db;
+    font-size: 1.2rem;
+}
+.footer-instagram-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.4rem;
+    border: 2.2px solid #FF13F0;
+    padding: 0.38rem;
+    transition: background 0.2s, border 0.2s;
+}
+.footer-instagram-link:hover,
+.footer-instagram-link:focus {
+    background: #e213db;
+    border-color: #e213db;
+    outline: none;
+}
+.footer-instagram-link svg {
+    display: block;
+    transition: fill 0.2s;
+}
+.footer-instagram-link:hover svg,
+.footer-instagram-link:focus svg {
+    fill: #000;
+}
+@media (max-width: 900px) {
+    .main-footer {
+        flex-direction: column;
+        gap: 2rem;
+        padding: 2.5rem 1rem;
+        text-align: center;
+    }
+    .footer-logo-col, .footer-address-col, .footer-social-col { justify-content: center; }
+    .footer-social-col { margin-top: 0.7rem; }
+    .footer-instagram { justify-content: center; }
+}
+</style>

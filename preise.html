@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>ashon – Preise</title>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap');
+
+    body {
+        background-color: #000000;
+        color: #FF13F0;
+        font-family: 'Montserrat', sans-serif;
+        margin: 0;
+        line-height: 1.6;
+        font-weight: 400;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+    }
+
+    a {
+        color: #FF13F0;
+        text-decoration: none;
+        transition: color 0.3s ease, transform 0.3s ease;
+        display: flex;
+        align-items: center;
+        gap: 0.4rem;
+        position: relative;
+        padding-bottom: 0.25rem;
+        border-bottom: 3px solid transparent;
+    }
+
+    a::after {
+        content: '';
+        position: absolute;
+        width: 0;
+        height: 3px;
+        bottom: 0;
+        left: 50%;
+        background-color: #e213db;
+        transition: all 0.3s ease;
+        border-radius: 2px;
+        transform: translateX(-50%);
+    }
+    a:hover::after,
+    a:focus::after {
+        width: 80%;
+    }
+    a:hover,
+    a:focus {
+        color: #e213db;
+        outline: none;
+        transform: translateY(-4px);
+    }
+
+    header {
+        max-width: 1600px;
+        width: 95%;
+        margin: 3rem auto 2rem auto;
+        padding: 0 2rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        user-select: none;
+    }
+
+    .title {
+        font-weight: 700;
+        font-size: 3.5rem;
+        letter-spacing: 0.15em;
+        color: #FF13F0;
+        user-select: text;
+        flex-shrink: 0;
+        cursor: pointer;
+    }
+    .title:hover {
+        color: #e213db;
+    }
+
+    nav {
+        display: flex;
+        gap: 3rem;
+        font-weight: 700;
+        font-size: 1.3rem;
+        justify-content: flex-end;
+        flex-grow: 1;
+        flex-wrap: nowrap;
+    }
+
+    nav a {
+        padding-bottom: 0.25rem;
+        border-bottom: 3px solid transparent;
+        transition: border-color 0.3s ease, color 0.3s ease;
+    }
+
+    nav a[aria-current="page"] {
+        border-bottom-color: #e213db;
+        color: #e213db;
+    }
+
+    nav a:hover:not([aria-current="page"]),
+    nav a:focus:not([aria-current="page"]) {
+        border-bottom-color: #e213db;
+        color: #e213db;
+        outline: none;
+    }
+
+    main {
+        max-width: 1400px;
+        width: 90%;
+        margin: 0 auto 4rem auto;
+        padding: 0 2rem;
+        flex-grow: 1;
+    }
+
+    h1 {
+        font-size: 3rem;
+        font-weight: 700;
+        margin-bottom: 2rem;
+        text-align: center;
+        color: #FF13F0;
+    }
+
+    section {
+        margin-bottom: 3rem;
+        color: #FF13F0;
+    }
+
+    section h2 {
+        font-size: 2rem;
+        font-weight: 600;
+        margin-bottom: 1rem;
+        border-bottom: 2px solid #e213db;
+        padding-bottom: 0.5rem;
+        max-width: fit-content;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 1rem;
+        user-select: none;
+    }
+
+    th, td {
+        padding: 1rem 1.5rem;
+        text-align: left;
+        border-bottom: 1px solid #330033;
+        vertical-align: top;
+    }
+
+    th {
+        font-weight: 700;
+        font-size: 1.1rem;
+        color: #FF13F0;
+    }
+
+    td.price {
+        font-weight: 600;
+        font-size: 1.1rem;
+        text-align: right;
+        color: #FF13F0;
+        line-height: 1.3;
+    }
+    td.price .price-desc {
+        display: block;
+        font-size: 0.85rem;
+        color: #d87df7;
+        font-weight: 400;
+        font-style: italic;
+        margin-top: 0.15rem;
+        text-align: right;
+    }
+
+    tr:hover {
+        background-color: rgba(226, 19, 240, 0.15);
+        cursor: default;
+        transition: background-color 0.3s ease;
+    }
+
+    footer {
+        background-color: #000000;
+        color: #FF13F0;
+        padding: 3rem 2rem;
+        font-size: 1rem;
+        border-top: 1px solid #330033;
+        margin-top: auto;
+        user-select: none;
+        max-width: 1600px;
+        width: 95%;
+        margin-left: auto;
+        margin-right: auto;
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 2rem;
+        box-sizing: border-box;
+        align-items: center;
+    }
+
+    .footer-logo {
+        font-weight: 700;
+        font-size: 2.5rem;
+        letter-spacing: 0.2em;
+        color: #FF13F0;
+        user-select: text;
+        flex: 1 1 200px;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+    }
+
+    .footer-contact {
+        flex: 2 1 600px;
+        display: flex;
+        justify-content: space-between;
+        line-height: 1.6;
+    }
+
+    .footer-contact address {
+        font-style: normal;
+    }
+
+    .footer-contact .address, 
+    .footer-contact .hours {
+        flex: 1;
+        padding-right: 2rem;
+    }
+
+    .footer-socials {
+        flex: 1 1 80px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 1rem;
+    }
+
+    .footer-socials h3 {
+        font-weight: 600;
+        font-size: 1.2rem;
+        margin: 0;
+        padding: 0;
+        color: #e213db;
+        text-align: center;
+    }
+
+    .social-links {
+        display: flex;
+        gap: 1rem;
+    }
+
+    .social-links a {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0.3rem;
+        border-radius: 0.4rem;
+        border: 1.5px solid #FF13F0;
+        transition: background-color 0.3s ease, border-color 0.3s ease;
+        text-decoration: none;
+    }
+
+    .social-links a:hover,
+    .social-links a:focus {
+        background-color: #e213db;
+        border-color: #e213db;
+        outline: none;
+    }
+
+    .social-links a svg {
+        width: 28px;
+        height: 28px;
+        fill: #FF13F0;
+        transition: fill 0.3s ease;
+    }
+
+    .social-links a:hover svg,
+    .social-links a:focus svg {
+        fill: #000000;
+    }
+
+    /* Responsive Footer */
+    @media (max-width: 900px) {
+        footer {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 2.5rem;
+        }
+        .footer-contact {
+            flex-direction: column;
+        }
+        .footer-contact .address, 
+        .footer-contact .hours {
+            padding-right: 0;
+            margin-bottom: 1.5rem;
+        }
+        .footer-socials {
+            flex-direction: row;
+            gap: 2rem;
+            align-items: center;
+        }
+    }
+
+    @media (max-width: 700px) {
+        nav {
+            gap: 1.2rem;
+            font-size: 1.1rem;
+        }
+        main {
+            width: 95%;
+            padding: 0 1rem;
+        }
+    }
+</style>
+</head>
+<body>
+
+<header>
+<a href="index.html" aria-label="Startseite">
+    <img src="bilder/logo.png" alt="logo" class="logo-img" />
+</a>
+    <nav aria-label="Hauptnavigation">
+        <a href="ueber-uns.html">Über uns</a>
+        <a href="preise.html" aria-current="page">Preise</a>
+        <a href="socials.html">Socials</a>
+        <a href="kontakt.html">Kontakt</a>
+    </nav>
+</header>
+
+<main>
+    <h1>Preise</h1>
+
+    <section>
+        <h2>Haarschnitte</h2>
+        <table>
+            <thead>
+                <tr>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Damen Haarschnitt</td>
+                    <td class="price">
+                        CHF 60<br>
+                        <span class="price-desc">inkl. Waschen & Styling</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Herren Haarschnitt</td>
+                    <td class="price">
+                        CHF 40<br>
+                        <span class="price-desc">inkl. Bartpflege</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Kinder (bis 12 Jahre)</td>
+                    <td class="price">
+                        CHF 30<br>
+                        <span class="price-desc">Waschen optional</span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <section>
+        <h2>Färben & Styling</h2>
+        <table>
+            <thead>
+                <tr>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Ansatzfärbung</td>
+                    <td class="price">
+                        CHF 70<br>
+                        <span class="price-desc">je nach Haarlänge</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Ganzkopf Färbung</td>
+                    <td class="price">
+                        CHF 120<br>
+                        <span class="price-desc">inkl. Pflegebehandlung</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Strähnchen</td>
+                    <td class="price">
+                        CHF 90<br>
+                        <span class="price-desc">Ab 20 Strähnen</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Styling (Föhnen, Glätten)</td>
+                    <td class="price">
+                        CHF 40<br>
+                        <span class="price-desc">Schnelles Styling</span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <section>
+        <h2>Special Services</h2>
+        <table>
+            <thead>
+                <tr>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Brautfrisur</td>
+                    <td class="price">
+                        CHF 150<br>
+                        <span class="price-desc">Individuelle Beratung & Styling</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Event Styling</td>
+                    <td class="price">
+                        CHF 80<br>
+                        <span class="price-desc">Perfekt für besondere Anlässe</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Intensive Pflegebehandlung</td>
+                    <td class="price">
+                        CHF 50<br>
+                        <span class="price-desc">Für strapaziertes Haar</span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+</main>
+
+<footer class="main-footer">
+    <div class="footer-col footer-logo-col">
+        <img src="bilder/logo.png" alt="ashon Logo" class="footer-logo-img">
+    </div>
+    <div class="footer-col footer-address-col">
+        <div class="footer-address">
+            <div class="footer-name">Sophie Tzionas</div>
+            <div>Usterstrasse 21</div>
+            <div>8614 Bertschikon</div>
+            <div class="footer-contact-light">+41 79 645 71 55</div>
+            <div class="footer-contact-light">info@ashon.ch</div>
+        </div>
+    </div>
+    <div class="footer-col footer-social-col">
+        <div class="footer-instagram">
+            <span class="footer-instagram-text">Folgen Sie uns</span>
+            <a href="https://www.instagram.com/sophie.tzionas/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="footer-instagram-link">
+                <svg viewBox="0 0 24 24" width="46" height="46" fill="#FF13F0">
+                    <path d="M7.75 2h8.5A5.75 5.75 0 0122 7.75v8.5A5.75 5.75 0 0116.25 22h-8.5A5.75 5.75 0 012 16.25v-8.5A5.75 5.75 0 017.75 2zm0 1.5A4.25 4.25 0 003.5 7.75v8.5A4.25 4.25 0 007.75 20.5h8.5a4.25 4.25 0 004.25-4.25v-8.5a4.25 4.25 0 00-4.25-4.25h-8.5zm8.75 3a1 1 0 110 2 1 1 0 010-2zM12 7a5 5 0 110 10 5 5 0 010-10zm0 1.5a3.5 3.5 0 100 7 3.5 3.5 0 000-7z"/>
+                </svg>
+            </a>
+        </div>
+    </div>
+</footer>
+
+<style>
+.main-footer {
+    width: 100%;
+    background: #000;
+    color: #FF13F0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2.5rem 4vw;
+    max-width: 1600px;
+    margin: 0 auto;
+    box-sizing: border-box;
+}
+.footer-col {
+    flex: 1 1 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 160px;
+}
+.footer-logo-col {
+    justify-content: flex-start;
+}
+.footer-logo-img {
+    height: 6rem; /* extra groß */
+    width: auto;
+    display: block;
+}
+.footer-address-col {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.footer-address {
+    text-align: center;
+    font-size: 1.22rem;
+    line-height: 1.55;
+    color: #FF13F0;
+}
+.footer-name {
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    margin-bottom: 0.2em;
+    font-size: 1.20rem;
+    color: #FF13F0;
+}
+.footer-contact-light {
+    font-size: 1.13rem;
+    color: #FF13F0;
+    font-weight: 400;
+    margin-top: 0.05em;
+}
+.footer-social-col {
+    flex-direction: row;
+    justify-content: flex-end;
+}
+.footer-instagram {
+    display: flex;
+    align-items: center;
+    gap: 1.08rem;
+}
+.footer-instagram-text {
+    font-weight: 600;
+    color: #e213db;
+    font-size: 1.2rem;
+}
+.footer-instagram-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.4rem;
+    border: 2.2px solid #FF13F0;
+    padding: 0.38rem;
+    transition: background 0.2s, border 0.2s;
+}
+.footer-instagram-link:hover,
+.footer-instagram-link:focus {
+    background: #e213db;
+    border-color: #e213db;
+    outline: none;
+}
+.footer-instagram-link svg {
+    display: block;
+    transition: fill 0.2s;
+}
+.footer-instagram-link:hover svg,
+.footer-instagram-link:focus svg {
+    fill: #000;
+}
+@media (max-width: 900px) {
+    .main-footer {
+        flex-direction: column;
+        gap: 2rem;
+        padding: 2.5rem 1rem;
+        text-align: center;
+    }
+    .footer-logo-col, .footer-address-col, .footer-social-col { justify-content: center; }
+    .footer-social-col { margin-top: 0.7rem; }
+    .footer-instagram { justify-content: center; }
+}
+</style>
