@@ -118,58 +118,87 @@
         font-weight: 600;
         letter-spacing: 0.03em;
     }
-    .insta-latest {
-        display: flex;
-        justify-content: center;
-        margin-bottom: 2.5rem;
-    }
-    .insta-latest iframe {
-        border: none;
-        border-radius: 1.2rem;
-        box-shadow: 0 2px 32px rgba(255,19,240,0.09);
-        width: 360px;
-        height: 470px;
-        background: #000;
-    }
-    .insta-grid {
+    .galerie-grid {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
         gap: 1.5rem;
         justify-items: center;
+        margin-top: 2rem;
     }
-    .insta-grid a {
+    .galerie-imgbox {
         display: block;
         border-radius: 1.2rem;
         overflow: hidden;
         box-shadow: 0 2px 20px rgba(255,19,240,0.08);
         background: #181818;
-        transition: transform 0.25s cubic-bezier(.4,2,.6,1), box-shadow 0.3s;
         border: 2px solid transparent;
         aspect-ratio: 1/1;
         max-width: 260px;
         min-width: 180px;
         width: 100%;
-        cursor: pointer;
     }
-    .insta-grid a:hover, .insta-grid a:focus {
-        transform: scale(1.055);
-        box-shadow: 0 6px 35px #ff13f060;
-        border-color: #e213db;
-        outline: none;
-    }
-    .insta-grid iframe {
+    .galerie-imgbox img {
         width: 100%;
         height: 100%;
-        min-height: 260px;
+        object-fit: cover;
+        border-radius: 1.2rem;
+        background: #181818;
+        display: block;
+        cursor: pointer;
+        box-shadow: 0 2px 20px rgba(255,19,240,0.08);
+        transition: box-shadow 0.4s, filter 0.4s;
     }
+    .galerie-imgbox img:hover {
+        box-shadow:
+            0 0 80px 30px #FF13F0,   /* pinklicher Glow */
+            0 0 50px 15px #e213db,   /* stärkeres Violett */
+            0 0 8px 2px #FFFFFF;     /* heller Rand */
+        filter: brightness(1.18) saturate(1.4) contrast(1.07);
+    }
+    /* Modal Styles (Großansicht) */
+    .modal {
+        display: none;
+        position: fixed;
+        z-index: 999;
+        padding-top: 60px;
+        left: 0; top: 0;
+        width: 100%; height: 100%;
+        overflow: auto;
+        background-color: rgba(0,0,0,0.92);
+    }
+    .modal-content {
+        margin: auto;
+        display: block;
+        max-width: 80vw;
+        max-height: 72vh;
+        border-radius: 1.2rem;
+        box-shadow: 0 4px 40px #FF13F0;
+        animation: zoom 0.4s;
+    }
+    @keyframes zoom {
+        from {transform: scale(0.85);}
+        to {transform: scale(1);}
+    }
+    .close {
+        position: absolute;
+        top: 16px;
+        right: 36px;
+        color: #FFF;
+        font-size: 44px;
+        font-weight: bold;
+        cursor: pointer;
+        user-select: none;
+        transition: color 0.2s;
+    }
+    .close:hover { color: #e213db; }
     @media (max-width: 900px) {
         nav { gap: 1.5rem; font-size: 1.1rem;}
-        .insta-grid { grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));}
+        .galerie-grid { grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));}
     }
     @media (max-width: 700px) {
         nav { gap: 1.2rem; font-size: 1.1rem;}
         main { width: 95%; padding: 0 0.5rem;}
-        .insta-grid { grid-template-columns: 1fr;}
+        .galerie-grid { grid-template-columns: 1fr;}
     }
 </style>
 </head>
@@ -180,7 +209,7 @@
     <img src="bilder/logo.png" alt="logo" class="logo-img" />
 </a>
     <nav aria-label="Hauptnavigation">
-        <a href="ueber-uns.html">Über uns</a>
+        <a href="ueber-uns.html">Team</a>
         <a href="preise.html">Preise</a>
         <a href="socials.html" aria-current="page">Galerie</a>
         <a href="kontakt.html">Kontakt</a>
@@ -188,30 +217,58 @@
 </header>
 
 <main>
-    <h1>Social Media & Inspiration</h1>
-    <div class="caption">Unser aktuellster Instagram-Post:</div>
-    <div class="insta-latest">
-        <iframe src="https://www.instagram.com/p/DNDUbbTtaX2/embed" allowtransparency="true" allowfullscreen="true" loading="lazy"></iframe>
-    </div>
-    <div class="caption">Mehr Inspiration auf Instagram</div>
-    <div class="insta-grid">
-        <a href="https://www.instagram.com/sophie.tzionas/p/DMpVSC6Ktai/" target="_blank" rel="noopener noreferrer" aria-label="Instagram-Post 1">
-            <iframe src="https://www.instagram.com/p/DMpVSC6Ktai/embed" allowtransparency="true" allowfullscreen="true" loading="lazy"></iframe>
-        </a>
-        <a href="https://www.instagram.com/sophie.tzionas/p/DMj1etPKzrc/" target="_blank" rel="noopener noreferrer" aria-label="Instagram-Post 2">
-            <iframe src="https://www.instagram.com/p/DMj1etPKzrc/embed" allowtransparency="true" allowfullscreen="true" loading="lazy"></iframe>
-        </a>
-        <a href="https://www.instagram.com/sophie.tzionas/p/DMhNiDuqdeW/" target="_blank" rel="noopener noreferrer" aria-label="Instagram-Post 3">
-            <iframe src="https://www.instagram.com/p/DMhNiDuqdeW/embed" allowtransparency="true" allowfullscreen="true" loading="lazy"></iframe>
-        </a>
-        <a href="https://www.instagram.com/sophie.tzionas/p/DMcjuIbKndE/" target="_blank" rel="noopener noreferrer" aria-label="Instagram-Post 4">
-            <iframe src="https://www.instagram.com/p/DMcjuIbKndE/embed" allowtransparency="true" allowfullscreen="true" loading="lazy"></iframe>
-        </a>
-        <a href="https://www.instagram.com/sophie.tzionas/p/DMH3jZWqsjB/" target="_blank" rel="noopener noreferrer" aria-label="Instagram-Post 5">
-            <iframe src="https://www.instagram.com/p/DMH3jZWqsjB/embed" allowtransparency="true" allowfullscreen="true" loading="lazy"></iframe>
-        </a>
+    <h1>Galerie & Inspiration</h1>
+    <div class="caption">Entdecke echte Looks, Farbtöne & Stylings aus dem Salon – Inspiration pur!</div>
+    <div class="galerie-grid">
+        <div class="galerie-imgbox"><img src="bilder/1.jpg" alt="Friseursalon Bild 1"></div>
+        <div class="galerie-imgbox"><img src="bilder/2.jpg" alt="Friseursalon Bild 2"></div>
+        <div class="galerie-imgbox"><img src="bilder/3.jpg" alt="Friseursalon Bild 3"></div>
+        <div class="galerie-imgbox"><img src="bilder/4.jpg" alt="Friseursalon Bild 4"></div>
+        <div class="galerie-imgbox"><img src="bilder/5.jpg" alt="Friseursalon Bild 5"></div>
+        <div class="galerie-imgbox"><img src="bilder/6.jpg" alt="Friseursalon Bild 6"></div>
+        <div class="galerie-imgbox"><img src="bilder/7.jpg" alt="Friseursalon Bild 7"></div>
+        <div class="galerie-imgbox"><img src="bilder/8.jpg" alt="Friseursalon Bild 8"></div>
+        <div class="galerie-imgbox"><img src="bilder/9.jpg" alt="Friseursalon Bild 9"></div>
+        <div class="galerie-imgbox"><img src="bilder/10.jpg" alt="Friseursalon Bild 10"></div>
+        <div class="galerie-imgbox"><img src="bilder/11.jpg" alt="Friseursalon Bild 11"></div>
+        <div class="galerie-imgbox"><img src="bilder/12.jpg" alt="Friseursalon Bild 12"></div>
+        <div class="galerie-imgbox"><img src="bilder/13.jpg" alt="Friseursalon Bild 13"></div>
+        <div class="galerie-imgbox"><img src="bilder/15.jpg" alt="Friseursalon Bild 15"></div>
+        <div class="galerie-imgbox"><img src="bilder/16.jpg" alt="Friseursalon Bild 16"></div>
     </div>
 </main>
+
+<div id="imgModal" class="modal">
+    <span class="close">&times;</span>
+    <img class="modal-content" id="modalImg">
+</div>
+
+<script>
+// Modal Referenzen
+const modal = document.getElementById('imgModal');
+const modalImg = document.getElementById('modalImg');
+const closeBtn = document.querySelector('.close');
+
+// Bilder anklicken, öffnen das Modal
+document.querySelectorAll('.galerie-imgbox img').forEach(img => {
+    img.onclick = function() {
+        modal.style.display = "block";
+        modalImg.src = this.src;
+    }
+});
+
+// Schließen beim Klick aufs X
+closeBtn.onclick = function() {
+    modal.style.display = "none";
+}
+
+// Schließen beim Klick außerhalb des Bildes (auf Modal-Hintergrund)
+window.onclick = function(event) {
+    if (event.target === modal) {
+        modal.style.display = "none";
+    }
+}
+</script>
 
 </body>
 </html>
