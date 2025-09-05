@@ -41,8 +41,7 @@
         border-radius: 2px;
         transform: translateX(-50%);
     }
-    a:hover::after,
-    a:focus::after {
+    a:hover::after, a:focus::after {
         width: 80%;
     }
     a:hover, a:focus {
@@ -59,18 +58,6 @@
         align-items: center;
         justify-content: space-between;
         user-select: none;
-    }
-    .title {
-        font-weight: 700;
-        font-size: 3.5rem;
-        letter-spacing: 0.15em;
-        color: #FF13F0;
-        user-select: text;
-        flex-shrink: 0;
-        cursor: pointer;
-    }
-    .title:hover {
-        color: #e213db;
     }
     nav {
         display: flex;
@@ -124,218 +111,103 @@
         width: 100%;
     }
     .kontakt-links {
-        display: flex;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: auto auto;
         gap: 2.5rem;
-        flex-wrap: wrap;
         margin-bottom: 3.5rem;
         width: 100%;
-        justify-content: center;
+        justify-items: center;
     }
-    .kontakt-card {
-        flex: 1 1 340px;
+    .kontakt-card, .adresse-card {
         background: #140013;
         border-radius: 1.2rem;
         box-shadow: 0 2px 32px rgba(255,19,240,0.07);
-        padding: 2.2rem 2rem 2.2rem 2rem;
         display: flex;
         flex-direction: column;
-        gap: 1rem;
-        min-width: 260px;
-        max-width: 380px;
         align-items: center;
-        text-align: center;
-        justify-content: center;
+        justify-content: center;      /* Absolut mittig */
+        text-align: center;           /* Horizontal mittig für alle Inhalte */
+        min-width: 260px;
+        max-width: 370px;
+        width: 100%;
+        height: 130px;
+        padding: 1.2rem 1.2rem 1.2rem 1.2rem;
     }
-    .kontakt-card strong {
+    .card-title {
         color: #e213db;
         font-size: 1.15rem;
         text-align: center;
-        margin: 0 auto;
+        margin: 0;
+        margin-top: 0;
+        margin-bottom: 0.16em;
+        padding: 0;
+        width: 100%;
+        justify-content: center;
+        display: flex;
     }
-    .kontakt-card a {
+    .kontakt-card strong, .adresse-card strong {
+        margin: 0;
+        padding: 0;
+    }
+    .kontakt-card a, .adresse-link {
         color: #FF13F0;
         border-bottom: none;
         font-weight: 600;
-        transition: color .18s;
         font-size: 1.13rem;
-        text-align: center;
         justify-content: center;
+        align-items: center;
+        display: flex;
+        gap: 0.7em;
+        padding: 0;
+        margin: 0;
+        text-align: center;
+        width: 100%;
     }
-    .kontakt-card a:hover,
-    .kontakt-card a:focus {
-        color: #e213db;
-    }
-    .kontakt-card svg {
+    .kontakt-card svg, .adresse-link svg {
         width: 1.35em;
         height: 1.35em;
+        fill: #FF13F0;
         margin-right: 0.33em;
-        fill: #FF13F0;
         vertical-align: middle;
+        transition: fill 0.2s;
     }
-    .kontakt-formular {
-        background: #000000;
-        border-radius: 1.2rem;
-        box-shadow: 0 2px 16px rgba(255,19,240,0.05);
-        padding: 2rem 2rem 2.5rem 2rem;
-        margin: 0 auto;
-        max-width: 520px;
-        margin-bottom: 2.5rem;
-        width: 100%;
-        text-align: center;
-    }
-    .kontakt-formular h2 {
-        font-size: 1.7rem;
-        font-weight: 600;
+    .kontakt-card a:hover,
+    .kontakt-card a:focus,
+    .adresse-link:hover,
+    .adresse-link:focus {
         color: #e213db;
-        margin-bottom: 1.2rem;
-        margin-top: 0;
-        text-align: center;
     }
-    .kontakt-formular label {
-        color: #FF13F0;
-        font-weight: 500;
-        display: block;
-        margin-bottom: 0.3rem;
-        letter-spacing: 0.02em;
-        text-align: center;
+    .kontakt-card a:hover svg,
+    .kontakt-card a:focus svg,
+    .adresse-link:hover svg,
+    .adresse-link:focus svg {
+        fill: #e213db;
     }
-    .kontakt-formular input,
-    .kontakt-formular textarea {
+    .social-address-row {
+        grid-column: 1 / span 3;
+        display: flex;
+        gap: 2.5rem;
+        justify-content: center;
+        align-items: flex-start;
         width: 100%;
-        background: #1a0025;
-        color: #FF13F0;
-        border: 1px solid #903275;
-        border-radius: 0.5rem;
-        padding: 0.75rem;
-        margin-bottom: 1.3rem;
-        font-size: 1rem;
-        font-family: 'Montserrat', sans-serif;
-        resize: vertical;
-        outline: none;
-        transition: border 0.2s;
-        text-align: center;
     }
-    .kontakt-formular input:focus,
-    .kontakt-formular textarea:focus {
-        border-color: #e213db;
+    @media (max-width: 1100px) {
+        .kontakt-links {
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: auto auto auto;
+        }
+        .social-address-row {
+            grid-column: 1 / span 2;
+        }
     }
-    .kontakt-formular button {
-        background: #FF13F0;
-        color: #000;
-        font-weight: 700;
-        border: none;
-        border-radius: 0.5rem;
-        padding: 0.9rem 2.2rem;
-        font-size: 1.1rem;
-        font-family: 'Montserrat', sans-serif;
-        cursor: pointer;
-        letter-spacing: 0.04em;
-        transition: background 0.2s, color 0.2s;
-        margin: 0 auto;
-        display: block;
-    }
-    .kontakt-formular button:hover,
-    .kontakt-formular button:focus {
-        background: #e213db;
-        color: #fff;
-        outline: none;
-    }
-    footer {
-        background-color: #000000;
-        color: #FF13F0;
-        padding: 3rem 2rem;
-        font-size: 1rem;
-        border-top: 1px solid #330033;
-        margin-top: auto;
-        user-select: none;
-        max-width: 1600px;
-        width: 95%;
-        margin-left: auto;
-        margin-right: auto;
-        display: flex;
-        justify-content: space-between;
-        flex-wrap: wrap;
-        gap: 2rem;
-        box-sizing: border-box;
-        align-items: center;
-    }
-    .footer-logo {
-        font-weight: 700;
-        font-size: 2.5rem;
-        letter-spacing: 0.2em;
-        color: #FF13F0;
-        user-select: text;
-        flex: 1 1 200px;
-        display: flex;
-        align-items: center;
-        justify-content: flex-start;
-    }
-    .footer-contact {
-        flex: 2 1 600px;
-        display: flex;
-        justify-content: space-between;
-        line-height: 1.6;
-    }
-    .footer-contact address {
-        font-style: normal;
-    }
-    .footer-contact .address, 
-    .footer-contact .hours {
-        flex: 1;
-        padding-right: 2rem;
-    }
-    .footer-socials {
-        flex: 1 1 80px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        gap: 1rem;
-    }
-    .footer-socials h3 {
-        font-weight: 600;
-        font-size: 1.2rem;
-        margin: 0;
-        padding: 0;
-        color: #e213db;
-        text-align: center;
-    }
-    .social-links {
-        display: flex;
-        gap: 1rem;
-    }
-    .social-links a {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        padding: 0.3rem;
-        border-radius: 0.4rem;
-        border: 1.5px solid #FF13F0;
-        transition: background-color 0.3s ease, border-color 0.3s ease;
-        text-decoration: none;
-    }
-    .social-links a:hover,
-    .social-links a:focus {
-        background-color: #e213db;
-        border-color: #e213db;
-        outline: none;
-    }
-    .social-links a svg {
-        width: 28px;
-        height: 28px;
-        fill: #FF13F0;
-        transition: fill 0.3s ease;
-    }
-    .social-links a:hover svg, .social-links a:focus svg {
-        fill: #000000;
-    }
-    @media (max-width: 900px) {
-        main {padding: 1.5rem 0.7rem;}
-        footer { flex-direction: column; align-items: flex-start; gap: 2.5rem;}
-        .footer-contact { flex-direction: column;}
-        .footer-contact .address, .footer-contact .hours {padding-right:0; margin-bottom: 1.5rem;}
-        .footer-socials {flex-direction: row; gap: 2rem;align-items: center;}
-        .kontakt-links {flex-direction: column;gap:2.5rem;}
+    @media (max-width: 800px) {
+        .kontakt-links {
+            grid-template-columns: 1fr;
+            grid-template-rows: auto;
+        }
+        .kontakt-card, .adresse-card { min-width: unset; max-width: unset; width: 100%; }
+        .social-address-row { flex-direction: column; gap: 2.5rem; align-items: stretch; }
     }
 </style>
 </head>
@@ -361,157 +233,45 @@
     </div>
     <div class="kontakt-links">
         <div class="kontakt-card">
-            <strong>Telefon</strong>
+            <strong class="card-title">Telefon</strong>
             <a href="tel:+41796457155">
                 <svg viewBox="0 0 24 24"><path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1C10.72 21 3 13.28 3 4c0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.34.03.74-.25 1.02l-2.2 2.2z"/></svg>
                 +41 79 645 71 55
             </a>
         </div>
         <div class="kontakt-card">
-            <strong>WhatsApp</strong>
+            <strong class="card-title">WhatsApp</strong>
             <a href="https://wa.me/41796457155" target="_blank" rel="noopener noreferrer">
                 <svg viewBox="0 0 24 24"><path d="M12.04 2.004A10 10 0 0 0 2 12.003c0 1.77.46 3.47 1.32 4.98l-1.4 5.12 5.25-1.38A9.99 9.99 0 0 0 12.04 22C17.53 22 22 17.524 22 12.003a9.998 9.998 0 0 0-9.96-9.999zM12.04 20c-1.53 0-3.02-.4-4.31-1.16l-.31-.19-3.11.82.83-3.03-.2-.32A7.986 7.986 0 0 1 4.04 12.003 8 8 0 1 1 20.05 12c0 4.41-3.58 8-8.01 8zm4.44-6.65c-.24-.12-1.41-.69-1.63-.76-.22-.07-.38-.12-.54.12-.17.24-.61.76-.74.92-.13.15-.27.17-.51.06-.24-.12-1.01-.37-1.93-1.19-.71-.62-1.18-1.39-1.32-1.62-.13-.23-.01-.36.11-.48.11-.11.25-.3.37-.45.12-.15.16-.26.24-.44.08-.18.04-.33-.02-.45-.06-.12-.53-1.28-.73-1.76-.19-.46-.39-.4-.54-.41-.13-.01-.28-.01-.44-.01-.15 0-.4.06-.63.29-.22.22-.86.84-.86 2.06s.89 2.39 1.01 2.56c.12.17 1.75 2.67 4.39 3.64C13.3 19.01 14 19.15 14.59 19.18c.36.02.77 0 1.17-.38.33-.32 1.08-1.05 1.23-2.07.13-.91-.13-1-.43-1.12z"/></svg>
                 Nachricht via WhatsApp
             </a>
         </div>
         <div class="kontakt-card">
-            <strong>Nachricht (SMS)</strong>
+            <strong class="card-title">Nachricht (SMS)</strong>
             <a href="sms:+41796457155">
                 <svg viewBox="0 0 24 24"><path d="M20 2H4C2.9 2 2 2.9 2 4v20l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-2 9h-4v4h-4v-4H4V6h16v5z"/></svg>
                 SMS senden
             </a>
         </div>
-        <div class="kontakt-card">
-            <strong>Instagram</strong>
-            <a href="https://www.instagram.com/sophie.tzionas/" target="_blank" rel="noopener noreferrer">
-                <svg viewBox="0 0 24 24"><path d="M7.75 2h8.5A5.75 5.75 0 0122 7.75v8.5A5.75 5.75 0 0116.25 22h-8.5A5.75 5.75 0 012 16.25v-8.5A5.75 5.75 0 017.75 2zm0 1.5A4.25 4.25 0 003.5 7.75v8.5A4.25 4.25 0 007.75 20.5h8.5a4.25 4.25 0 004.25-4.25v-8.5a4.25 4.25 0 00-4.25-4.25h-8.5zm8.75 3a1 1 0 110 2 1 1 0 010-2zM12 7a5 5 0 110 10 5 5 0 010-10zm0 1.5a3.5 3.5 0 100 7 3.5 3.5 0 000-7z"/></svg>
-                Schreibe über Instagram
-            </a>
+        <div class="social-address-row">
+            <div class="kontakt-card">
+                <strong class="card-title">Instagram</strong>
+                <a href="https://www.instagram.com/sophie.tzionas/" target="_blank" rel="noopener noreferrer">
+                    <svg viewBox="0 0 24 24"><path d="M7.75 2h8.5A5.75 5.75 0 0122 7.75v8.5A5.75 5.75 0 0116.25 22h-8.5A5.75 5.75 0 012 16.25v-8.5A5.75 5.75 0 017.75 2zm0 1.5A4.25 4.25 0 003.5 7.75v8.5A4.25 4.25 0 007.75 20.5h8.5a4.25 4.25 0 004.25-4.25v-8.5a4.25 4.25 0 00-4.25-4.25h-8.5zm8.75 3a1 1 0 110 2 1 1 0 010-2zM12 7a5 5 0 110 10 5 5 0 010-10zm0 1.5a3.5 3.5 0 100 7 3.5 3.5 0 000-7z"/></svg>
+                    Schreibe über Instagram
+                </a>
+            </div>
+            <div class="adresse-card">
+                <strong class="card-title">Adresse</strong>
+                <a class="adresse-link" href="https://www.google.com/maps?q=Usterstrasse+21,+8614+Bertschikon" target="_blank" rel="noopener noreferrer">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C7.031 2 2.997 6.043 3 11.014 3.003 16.529 10.443 21.61 11.045 22.031a1 1 0 0 0 1.054 0C13.557 21.61 20.997 16.531 21 11.014 21.003 6.043 16.969 2 12 2zm0 2c4.064 0 7.008 2.963 7 7.014-.003 4.03-6.102 8.538-7 9.165-.9-.627-6.997-5.158-7-9.165C4.991 6.963 7.933 4 12 4zm0 3a3 3 0 1 0 0 6 3 3 0 0 0 0-6zm0 2a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/></svg>
+                    <span>
+                        Usterstrasse 21<br>8614 Bertschikon
+                    </span>
+                </a>
+            </div>
         </div>
     </div>
-<footer class="main-footer">
-    <div class="footer-col footer-logo-col">
-        <img src="bilder/logo.png" alt="ashon Logo" class="footer-logo-img">
-    </div>
-    <div class="footer-col footer-address-col">
-        <div class="footer-address">
-            <div class="footer-name">Sophie Tzionas</div>
-            <div>Usterstrasse 21</div>
-            <div>8614 Bertschikon</div>
-            <div class="footer-contact-light">+41 79 645 71 55</div>
-            <div class="footer-contact-light">info@ashon.ch</div>
-        </div>
-    </div>
-    <div class="footer-col footer-social-col">
-        <div class="footer-instagram">
-            <span class="footer-instagram-text">Folgen Sie uns</span>
-            <a href="https://www.instagram.com/sophie.tzionas/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="footer-instagram-link">
-                <svg viewBox="0 0 24 24" width="46" height="46" fill="#FF13F0">
-                    <path d="M7.75 2h8.5A5.75 5.75 0 0122 7.75v8.5A5.75 5.75 0 0116.25 22h-8.5A5.75 5.75 0 012 16.25v-8.5A5.75 5.75 0 017.75 2zm0 1.5A4.25 4.25 0 003.5 7.75v8.5A4.25 4.25 0 007.75 20.5h8.5a4.25 4.25 0 004.25-4.25v-8.5a4.25 4.25 0 00-4.25-4.25h-8.5zm8.75 3a1 1 0 110 2 1 1 0 010-2zM12 7a5 5 0 110 10 5 5 0 010-10zm0 1.5a3.5 3.5 0 100 7 3.5 3.5 0 000-7z"/>
-                </svg>
-            </a>
-        </div>
-    </div>
-</footer>
-
-<style>
-.main-footer {
-    width: 100%;
-    background: #000;
-    color: #FF13F0;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 2.5rem 4vw;
-    max-width: 1600px;
-    margin: 0 auto;
-    box-sizing: border-box;
-}
-.footer-col {
-    flex: 1 1 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-width: 160px;
-}
-.footer-logo-col {
-    justify-content: flex-start;
-}
-.footer-logo-img {
-    height: 6rem; /* extra groß */
-    width: auto;
-    display: block;
-}
-.footer-address-col {
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
-.footer-address {
-    text-align: center;
-    font-size: 1.22rem;
-    line-height: 1.55;
-    color: #FF13F0;
-}
-.footer-name {
-    font-weight: 600;
-    letter-spacing: 0.1em;
-    margin-bottom: 0.2em;
-    font-size: 1.20rem;
-    color: #FF13F0;
-}
-.footer-contact-light {
-    font-size: 1.13rem;
-    color: #FF13F0;
-    font-weight: 400;
-    margin-top: 0.05em;
-}
-.footer-social-col {
-    flex-direction: row;
-    justify-content: flex-end;
-}
-.footer-instagram {
-    display: flex;
-    align-items: center;
-    gap: 1.08rem;
-}
-.footer-instagram-text {
-    font-weight: 600;
-    color: #e213db;
-    font-size: 1.2rem;
-}
-.footer-instagram-link {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 0.4rem;
-    border: 2.2px solid #FF13F0;
-    padding: 0.38rem;
-    transition: background 0.2s, border 0.2s;
-}
-.footer-instagram-link:hover,
-.footer-instagram-link:focus {
-    background: #e213db;
-    border-color: #e213db;
-    outline: none;
-}
-.footer-instagram-link svg {
-    display: block;
-    transition: fill 0.2s;
-}
-.footer-instagram-link:hover svg,
-.footer-instagram-link:focus svg {
-    fill: #000;
-}
-@media (max-width: 900px) {
-    .main-footer {
-        flex-direction: column;
-        gap: 2rem;
-        padding: 2.5rem 1rem;
-        text-align: center;
-    }
-    .footer-logo-col, .footer-address-col, .footer-social-col { justify-content: center; }
-    .footer-social-col { margin-top: 0.7rem; }
-    .footer-instagram { justify-content: center; }
-}
-</style>
+</main>
+</body>
+</html>
