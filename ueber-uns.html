@@ -7,7 +7,7 @@
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap');
     body {
-        background-color: #000000;
+        background-color: #0B0B13;
         color: #FF13F0;
         font-family: 'Montserrat', sans-serif;
         margin: 0;
@@ -109,11 +109,12 @@
         color: #FF13F0;
         text-align: left;
     }
+    /* Bild und Text auf gleicher Höhe unter dem h1 */
     .ueber-uns-row {
         display: flex;
         gap: 3rem;
         margin-bottom: 4rem;
-        align-items: stretch;
+        align-items: flex-start; /* Startet oben, Bild & Text exakt unter h1 */
         flex-wrap: wrap;
     }
     .ueber-uns-text {
@@ -130,7 +131,7 @@
         max-width: 480px;
         min-width: 220px;
         display: flex;
-        align-items: center;
+        align-items: flex-start; /* auch Bild oben ausrichten */
         justify-content: center;
     }
     .ueber-uns-image img {
@@ -205,6 +206,7 @@
 </head>
 <body>
 
+
 <header>
 <a href="index.html" aria-label="Startseite">
     <img src="bilder/logo.png" alt="logo" class="logo-img" />
@@ -212,7 +214,7 @@
     <nav aria-label="Hauptnavigation">
         <a href="ueber-uns.html" aria-current="page">Über uns</a>
         <a href="preise.html">Preise</a>
-        <a href="socials.html">Socials</a>
+        <a href="socials.html">Galerie</a>
         <a href="kontakt.html">Kontakt</a>
     </nav>
 </header>
@@ -221,16 +223,14 @@
     <h1>Über uns</h1>
     <!-- Erster Block: Text links, Bild rechts -->
     <div class="ueber-uns-row">
-       <div class="ueber-uns-text">
-                <b>ashon – be beauty be yourself.</b> Das ist nicht nur unser Claim, sondern unsere Haltung. Wir glauben, dass wahre Schönheit dort entsteht, wo man ganz man selbst sein darf.<br><br>
-               In unserer Hair Boutique im Zürcher Oberland vereinen wir moderne Trends und Techniken, persönliche Beratung und eine liebevolle Atmosphäre. Seit vielen Jahren dürfen wir Kundinnen und Kunden aus der ganzen Deutschschweiz – von Bern über St. Gallen bis Aargau – begleiten. Darauf sind wir stolz und dafür sind wir dankbar.<br><br>
-               Ob Du Lust auf einen neuen Look hast, Deine Persönlichkeit neu unterstreichen oder einfach entspannen möchtest – wir sind für Dich da. Lass Dich von unserem Team verwöhnen und erlebe, wie schön es ist, einfach Du selbst zu sein – für einen Look, der so einzigartig ist wie Du selbst.<br><br>
-               <br><br>
-            </p>
-        </div>
-        <div class="ueber-uns-image">
-            <img src="https://images.unsplash.com/photo-1522337660859-02fbefca4702?auto=format&fit=crop&w=600&q=80" alt="ashon Salon Team" />
-        </div>
+      <div class="ueber-uns-text">
+        <b>ashon – be beauty be yourself.</b> Das ist nicht nur unser Claim, sondern unsere Haltung. Wir glauben, dass wahre Schönheit dort entsteht, wo man ganz man selbst sein darf.<br><br>
+        In unserer Hair Boutique im Zürcher Oberland vereinen wir moderne Trends und Techniken, persönliche Beratung und eine liebevolle Atmosphäre. Seit vielen Jahren dürfen wir Kundinnen und Kunden aus der ganzen Deutschschweiz – von Bern über St. Gallen bis Aargau – begleiten. Darauf sind wir stolz und dafür sind wir dankbar.<br><br>
+        Ob Du Lust auf einen neuen Look hast, Deine Persönlichkeit neu unterstreichen oder einfach entspannen möchtest – wir sind für Dich da. Lass Dich von unserem Team verwöhnen und erlebe, wie schön es ist, einfach Du selbst zu sein – für einen Look, der so einzigartig ist wie Du selbst.
+      </div>
+      <div class="ueber-uns-image">
+        <img src="https://images.unsplash.com/photo-1522337660859-02fbefca4702?auto=format&fit=crop&w=600&q=80" alt="ashon Salon Team" />
+      </div>
     </div>
     <!-- Dreimal Mitarbeiterblock -->
     <div class="mitarbeiter-row">
