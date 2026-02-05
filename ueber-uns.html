@@ -151,9 +151,12 @@
     .mitarbeiter-row {
         display: flex;
         gap: 3rem;
-        margin-bottom: 3.5rem;
+        margin-bottom: 3.2rem; /* einheitlicher Abstand */
         align-items: center;
         flex-wrap: wrap;
+    }
+    .mitarbeiter-row:last-of-type {
+        margin-bottom: 3.6rem; /* etwas Luft nach unten */
     }
     .mitarbeiter-image {
         flex: 1 1 260px;
@@ -223,6 +226,9 @@
             gap: 2.4rem;
             margin-bottom: 3rem;
         }
+        .mitarbeiter-row:last-of-type {
+            margin-bottom: 3.4rem;
+        }
     }
 
     /* iPhone / Handy */
@@ -279,7 +285,11 @@
             flex-direction: column;
             align-items: center;
             gap: 1.6rem;          /* Abstand Bild <-> Text */
-            margin-bottom: 2.6rem;/* Abstand zwischen den Mitarbeitern */
+            margin-bottom: 2.8rem; /* gleicher Abstand zwischen allen Mitarbeitern */
+        }
+
+        .mitarbeiter-row:last-of-type {
+            margin-bottom: 3rem;
         }
 
         .mitarbeiter-image img {
