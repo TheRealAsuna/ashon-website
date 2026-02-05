@@ -195,11 +195,46 @@
         nav { gap: 1.5rem; font-size: 1.1rem;}
         .galerie-grid { grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));}
     }
-    @media (max-width: 700px) {
-        nav { gap: 1.2rem; font-size: 1.1rem;}
-        main { width: 95%; padding: 0 0.5rem;}
-        .galerie-grid { grid-template-columns: 1fr;}
+@media (max-width: 700px) {
+    header {
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+        margin: 1.5rem auto;
+        padding: 0 1rem;
     }
+
+    .logo-img {
+        max-width: 160px;
+        height: auto;
+    }
+
+    nav {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 0.8rem 1.4rem;
+        font-size: 1rem;
+    }
+
+    main {
+        width: 95%;
+        padding: 0 1rem;
+        margin-bottom: 2rem;
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+
+    .caption {
+        font-size: 1.05rem;
+    }
+
+    .galerie-grid {
+        grid-template-columns: 1fr;
+        gap: 1.2rem;
+    }
+}
 </style>
 </head>
 <body>

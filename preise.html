@@ -160,16 +160,55 @@
         cursor: default;
         transition: background-color 0.3s ease;
     }
-    @media (max-width: 700px) {
-        nav {
-            gap: 1.2rem;
-            font-size: 1.1rem;
-        }
-        main {
-            width: 95%;
-            padding: 0 1rem;
-        }
+    main section h1 {
+        color: #FF13F0;
+        font-weight: 700;
+        margin-top: 0;
+        margin-bottom: 1.5rem;
+        font-size: 2.9rem;
+        text-align: center;
     }
+
+    /* Zentrierung für den Text im Bereich unter dem Bild */
+    main section {
+        text-align: center;
+    }
+
+@media (max-width: 700px) {
+    header {
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+        margin: 1.5rem auto;
+        padding: 0 1rem;
+    }
+
+    .logo-img {
+        max-width: 160px;
+        height: auto;
+    }
+
+    nav {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 0.8rem 1.4rem;
+        font-size: 1rem;
+    }
+
+    main {
+        width: 95%;
+        padding: 0 1rem;
+        margin-bottom: 2rem;
+    }
+
+    section h2 {
+        font-size: 1.6rem;
+    }
+
+    table {
+        font-size: 0.95rem;
+    }
+}
 </style>
 </head>
 <body>
@@ -187,440 +226,436 @@
 </header>
 
 <main>
-    <h1>Preise</h1>
-    <section>
-        <h2>Damen</h2>
-        <td>Waschen, Schneiden, Föhnen</td>
-        <table>
-            <thead>
-                <tr>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Sehr Kurz (Maschine)</td>
-                    <td class="price">
-                        CHF 65<br>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Kurz</td>
-                    <td class="price">
-                        CHF 73<br>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Mittel</td>
-                    <td class="price">
-                        CHF 81<br>
-                    </td>
-                </tr>
-                                <tr>
-                    <td>Lang</td>
-                    <td class="price">
-                        CHF 90<br>
-                    </td>
-                </tr>
-                                <tr>
-                    <td>Sehr Lang</td>
-                    <td class="price">
-                        CHF 95 - 110<br>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </section>
-        <section>
-        <td>Waschen, Föhnen</td>
-        <table>
-            <thead>
-                <tr>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Kurz</td>
-                    <td class="price">
-                        CHF 48<br>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Kinnlang</td>
-                    <td class="price">
-                        CHF 55<br>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Mittel</td>
-                    <td class="price">
-                        CHF 62<br>
-                    </td>
-                </tr>
-                                <tr>
-                    <td>Lang</td>
-                    <td class="price">
-                        CHF 67<br>
-                    </td>
-                </tr>
-                                <tr>
-                    <td>Extra Lang</td>
-                    <td class="price">
-                        CHF 78<br>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </section>
-       <section>
-        <h2>Färben</h2>
-        <td>Ansatz</td>
-        <table>
-            <thead>
-                <tr>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Feine Haare</td>
-                    <td class="price">
-                        CHF 75<br>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Starkes Haare</td>
-                    <td class="price">
-                        CHF 85<br>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </section>
-         <section>
-        <td>Ansatz & Spitz</td>
-        <table>
-            <thead>
-                <tr>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Kurz Feines Haar</td>
-                    <td class="price">
-                        CHF 80<br>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Kurz Starkes Haar</td>
-                    <td class="price">
-                        CHF 90<br>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Mittel Feines Haar</td>
-                    <td class="price">
-                        CHF 95<br>
-                    </td>
-                </tr>
-                                <tr>
-                    <td>Mittel Starkes Haar</td>
-                    <td class="price">
-                        CHF 105<br>
-                    </td>
-                </tr>
-                                <tr>
-                    <td>Lang Feines Haar</td>
-                    <td class="price">
-                        CHF 100<br>
-                    </td>
-                </tr>
-                </tr>
-                                <tr>
-                    <td>Lang Starkes Haar</td>
-                    <td class="price">
-                        CHF 120<br>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </section>
-             <section>
-        <td>Tönung</td>
-        <table>
-            <thead>
-                <tr>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Refreshing </td>
-                    <td class="price">
-                        CHF 40 - 60<br>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </section>
-           <section>
-        <td>Meche</td>
-        <table>
-            <thead>
-                <tr>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Halber Kopf</td>
-                    <td class="price">
-                        CHF 95<br>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Ganzer Kopf</td>
-                    <td class="price">
-                        CHF 120<br>
-                    </td>
-                </tr>
-                                <tr>
-                    <td>Balayage & Blondieren</td>
-                    <td class="price">
-                       ab CHF 150<br>
-                       <span class="price-desc">+50 je nach Aufwand</span>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </section>
-    <section>
-        <h2>Masken / Pflegen</h2>
-        <table>
-            <thead>
-                <tr>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Rescio</td>
-                    <td class="price">
-                        CHF 30 - 50<br>
-                        <span class="price-desc">je nach Haarlänge</span>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Keratin Maske</td>
-                    <td class="price">
-                        CHF 15 - 30<br>
-                        <span class="price-desc">je nach Haarlänge</span>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Botox</td>
-                    <td class="price">
-                        CHF 30 - 80<br>
-                        <span class="price-desc">je nach Haarlänge</span>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </section>
-           <section>
-        <td>Keratin Behandlung</td>
-        <table>
-            <thead>
-                <tr>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>60 Minuten</td>
-                    <td class="price">
-                        CHF 150<br>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </section>
-    <section>
-        <h2>Herren</h2>
-        <table>
-            <thead>
-                <tr>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Waschen, Schneiden, Stylen</td>
-                    <td class="price">
-                        CHF 47<br>
-                     <span class="price-desc">+15 Bei langen Haaren</span>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Mit Maschine</td>
-                    <td class="price">
-                        CHF 35<br>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Bart Konturen (Trocken)</td>
-                    <td class="price">
-                        CHF 10<br>
-                    </td>
-                </tr>
-                                <tr>
-                    <td>Bart nass Rasieren</td>
-                    <td class="price">
-                        CHF 35<br>
-                    </td>
-                </tr>
-                                <tr>
-                    <td>Tönung</td>
-                    <td class="price">
-                        CHF 30<br>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </section>
-       <section>
-        <h2>Dauerwelle</h2>
-        <table>
-            <thead>
-                <tr>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Halber Kopf</td>
-                    <td class="price">
-                        CHF 85<br>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Ganzer Kopf</td>
-                    <td class="price">
-                        CHF 115<br>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </section>
-        <section>
-        <h2>Kinder</h2>
-        <td>Jungs</td>
-        <table>
-            <thead>
-                <tr>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>0 - 17 Jahre</td>
-                    <td class="price">
-                        CHF 20 - 40<br>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </section>
-            <section>
-        <td>Mädchen</td>
-        <table>
-            <thead>
-                <tr>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>0 - 17 Jahre</td>
-                    <td class="price">
-                        CHF 25 - 65<br>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </section>
-        <section>
-        <h2>Make -up</h2>
-        <table>
-            <thead>
-                <tr>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Make -up Beratung 90 Minuten</td>
-                    <td class="price">
-                        CHF 180<br>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Tages Make -up</td>
-                    <td class="price">
-                        CHF 90<br>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Abend Make -up</td>
-                    <td class="price">
-                        CHF 120<br>
-                    </td>
-                </tr>
-                                <tr>
-                    <td>Hochzeitspaket</td>
-                    <td class="price">
-                        Preis auf Anfrage<br>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </section>
-        <section>
-        <h2>Augenbrauen</h2>
-        <table>
-            <thead>
-                <tr>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Zupfen</td>
-                    <td class="price">
-                        CHF 15<br>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Zupfen / Färben</td>
-                    <td class="price">
-                        CHF 25<br>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Wimpern + Brauen</td>
-                    <td class="price">
-                        CHF 40<br>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </section>
-            <section>
-        <h2>Extension</h2>
-        <table>
-            <thead>
-                <tr>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Tape</td>
-                    <td class="price">
-                        Preis auf Anfrage<br>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </section>
+    <h1>Preise</h1>
+    <section>
+        <h2>Damen</h2>
+        <p><strong>Waschen, Schneiden, Föhnen</strong></p>
+        <table>
+            <thead>
+                <tr>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Sehr Kurz (Maschine)</td>
+                    <td class="price">
+                        CHF 65<br>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Kurz</td>
+                    <td class="price">
+                        CHF 73<br>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Mittel</td>
+                    <td class="price">
+                        CHF 81<br>
+                    </td>
+                </tr>
+                                <tr>
+                    <td>Lang</td>
+                    <td class="price">
+                        CHF 90<br>
+                    </td>
+                </tr>
+                                <tr>
+                    <td>Sehr Lang</td>
+                    <td class="price">
+                        CHF 95 - 110<br>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+    <section>
+        <p><strong>Waschen, Föhnen</strong></p>
+        <table>
+            <thead>
+                <tr>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Kurz</td>
+                    <td class="price">
+                        CHF 48<br>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Kinnlang</td>
+                    <td class="price">
+                        CHF 55<br>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Mittel</td>
+                    <td class="price">
+                        CHF 62<br>
+                    </td>
+                </tr>
+                                <tr>
+                    <td>Lang</td>
+                    <td class="price">
+                        CHF 67<br>
+                    </td>
+                </tr>
+                                <tr>
+                    <td>Extra Lang</td>
+                    <td class="price">
+                        CHF 78<br>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+    <section>
+        <h2>Färben</h2>
+        <p><strong>Ansatz</strong></p>
+        <table>
+            <thead>
+                <tr>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Feine Haare</td>
+                    <td class="price">
+                        CHF 75<br>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Starkes Haare</td>
+                    <td class="price">
+                        CHF 85<br>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+    <section>
+        <p><strong>Ansatz & Spitz</strong></p>
+        <table>
+            <thead>
+                <tr>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Kurz Feines Haar</td>
+                    <td class="price">
+                        CHF 80<br>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Kurz Starkes Haar</td>
+                    <td class="price">
+                        CHF 90<br>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Mittel Feines Haar</td>
+                    <td class="price">
+                        CHF 95<br>
+                    </td>
+                </tr>
+                                <tr>
+                    <td>Mittel Starkes Haar</td>
+                    <td class="price">
+                        CHF 105<br>
+                    </td>
+                </tr>
+                                <tr>
+                    <td>Lang Feines Haar</td>
+                    <td class="price">
+                        CHF 100<br>
+                    </td>
+                </tr>
+                                <tr>
+                    <td>Lang Starkes Haar</td>
+                    <td class="price">
+                        CHF 120<br>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+    <section>
+        <p><strong>Tönung</strong></p>
+        <table>
+            <thead>
+                <tr>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Refreshing </td>
+                    <td class="price">
+                        CHF 40 - 60<br>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+    <section>
+        <p><strong>Meche</strong></p>
+        <table>
+            <thead>
+                <tr>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Halber Kopf</td>
+                    <td class="price">
+                        CHF 95<br>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Ganzer Kopf</td>
+                    <td class="price">
+                        CHF 120<br>
+                    </td>
+                </tr>
+                                <tr>
+                    <td>Balayage & Blondieren</td>
+                    <td class="price">
+                       ab CHF 150<br>
+                       <span class="price-desc">+50 je nach Aufwand</span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+    <section>
+        <h2>Masken / Pflegen</h2>
+        <table>
+            <thead>
+                <tr>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Rescio</td>
+                    <td class="price">
+                        CHF 30 - 50<br>
+                        <span class="price-desc">je nach Haarlänge</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Keratin Maske</td>
+                    <td class="price">
+                        CHF 15 - 30<br>
+                        <span class="price-desc">je nach Haarlänge</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Botox</td>
+                    <td class="price">
+                        CHF 30 - 80<br>
+                        <span class="price-desc">je nach Haarlänge</span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+    <section>
+        <p><strong>Keratin Behandlung</strong></p>
+        <table>
+            <thead>
+                <tr>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>60 Minuten</td>
+                    <td class="price">
+                        CHF 150<br>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+    <section>
+        <h2>Herren</h2>
+        <table>
+            <thead>
+                <tr>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Waschen, Schneiden, Stylen</td>
+                    <td class="price">
+                        CHF 47<br>
+                     <span class="price-desc">+15 Bei langen Haaren</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Mit Maschine</td>
+                    <td class="price">
+                        CHF 35<br>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Bart Konturen (Trocken)</td>
+                    <td class="price">
+                        CHF 10<br>
+                    </td>
+                </tr>
+                                <tr>
+                    <td>Bart nass Rasieren</td>
+                    <td class="price">
+                        CHF 35<br>
+                    </td>
+                </tr>
+                                <tr>
+                    <td>Tönung</td>
+                    <td class="price">
+                        CHF 30<br>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+    <section>
+        <h2>Dauerwelle</h2>
+        <table>
+            <thead>
+                <tr>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Halber Kopf</td>
+                    <td class="price">
+                        CHF 85<br>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Ganzer Kopf</td>
+                    <td class="price">
+                        CHF 115<br>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+    <section>
+        <h2>Kinder</h2>
+        <p><strong>Jungs</strong></p>
+        <table>
+            <thead>
+                <tr>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>0 - 17 Jahre</td>
+                    <td class="price">
+                        CHF 20 - 40<br>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+    <section>
+        <p><strong>Mädchen</strong></p>
+        <table>
+            <thead>
+                <tr>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>0 - 17 Jahre</td>
+                    <td class="price">
+                        CHF 25 - 65<br>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+    <section>
+        <h2>Make -up</h2>
+        <table>
+            <thead>
+                <tr>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Make -up Beratung 90 Minuten</td>
+                    <td class="price">
+                        CHF 180<br>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Tages Make -up</td>
+                    <td class="price">
+                        CHF 90<br>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Abend Make -up</td>
+                    <td class="price">
+                        CHF 120<br>
+                    </td>
+                </tr>
+                                <tr>
+                    <td>Hochzeitspaket</td>
+                    <td class="price">
+                        Preis auf Anfrage<br>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+    <section>
+        <h2>Augenbrauen</h2>
+        <table>
+            <thead>
+                <tr>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Zupfen</td>
+                    <td class="price">
+                        CHF 15<br>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Zupfen / Färben</td>
+                    <td class="price">
+                        CHF 25<br>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Wimpern + Brauen</td>
+                    <td class="price">
+                        CHF 40<br>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+    <section>
+        <h2>Extension</h2>
+        <table>
+            <thead>
+                <tr>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Tape</td>
+                    <td class="price">
+                        Preis auf Anfrage<br>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
 </main>
-
-</body>
-</html>

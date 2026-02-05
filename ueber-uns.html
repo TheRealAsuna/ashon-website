@@ -196,12 +196,64 @@
         color: #FF13F0;
         font-size: 1.08rem;
     }
-    @media (max-width: 900px) {
-        .ueber-uns-row, .mitarbeiter-row {flex-direction: column; gap: 2rem;}
-        h1 {font-size:2.1rem;}
-        nav {gap: 1.5rem; font-size: 1.1rem;}
-        main {padding: 0 0.9rem;}
+    main section h1 {
+        color: #FF13F0;
+        font-weight: 700;
+        margin-top: 0;
+        margin-bottom: 1.5rem;
+        font-size: 2.9rem;
+        text-align: center;
     }
+
+    /* Zentrierung für den Text im Bereich unter dem Bild */
+    main section {
+        text-align: center;
+    }
+
+@media (max-width: 700px) {
+    header {
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+        margin: 1.5rem auto;
+        padding: 0 1rem;
+    }
+
+    .logo-img {
+        max-width: 160px;
+        height: auto;
+    }
+
+    nav {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 0.8rem 1.4rem;
+        font-size: 1rem;
+    }
+
+    main {
+        width: 95%;
+        padding: 0 1rem;
+        margin-bottom: 2rem;
+    }
+
+    h1 {
+        font-size: 2.1rem;
+        text-align: center;
+    }
+
+    .ueber-uns-row,
+    .mitarbeiter-row {
+        flex-direction: column;
+        align-items: center;
+        gap: 1.5rem;
+    }
+
+    .ueber-uns-text,
+    .mitarbeiter-info {
+        text-align: center;
+    }
+}
 </style>
 </head>
 <body>
