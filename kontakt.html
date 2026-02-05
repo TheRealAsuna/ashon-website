@@ -49,6 +49,8 @@
         outline: none;
         transform: translateY(-4px);
     }
+
+    /* Header Desktop */
     header {
         max-width: 1600px;
         width: 95%;
@@ -58,6 +60,10 @@
         align-items: center;
         justify-content: space-between;
         user-select: none;
+    }
+    .logo-img {
+        height: auto;
+        max-width: 190px;
     }
     nav {
         display: flex;
@@ -84,6 +90,25 @@
         color: #e213db;
         outline: none;
     }
+
+    /* Hamburger-Button (nur Mobile) */
+    .nav-toggle {
+        display: none;
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 0.3rem;
+        margin-left: 1rem;
+    }
+    .nav-toggle span {
+        display: block;
+        width: 24px;
+        height: 2px;
+        background-color: #FF13F0;
+        margin: 5px 0;
+        transition: transform 0.3s ease, opacity 0.3s ease;
+    }
+
     main {
         max-width: 1400px;
         width: 90%;
@@ -111,7 +136,7 @@
     }
     .kontakt-links {
         display: grid;
-        grid-template-columns: repeat(3, 1fr);  /* Desktop/Laptop: 3 Spalten */
+        grid-template-columns: repeat(3, 1fr);
         grid-template-rows: auto auto;
         gap: 2.5rem;
         margin-bottom: 3.5rem;
@@ -190,101 +215,144 @@
         width: 100%;
     }
 
-@media (max-width: 900px) {
-    header {
-        margin: 2rem auto 1.5rem auto;
-    }
-    nav {
-        gap: 2rem;
-        font-size: 1.1rem;
-    }
-    h1 {
-        font-size: 2.4rem;
-        margin-bottom: 2rem;
-    }
-    .kontakt-infos {
-        font-size: 1.15rem;
-        padding: 0 0.5rem;
-    }
-}
-
-/* iPhone / Handy: alles untereinander */
-@media (max-width: 700px) {
-    header {
-        flex-direction: column;
-        align-items: center;
-        gap: 1rem;
-        margin: 1.5rem auto;
-        padding: 0 1rem;
+    @media (max-width: 900px) {
+        header {
+            margin: 2rem auto 1.5rem auto;
+        }
+        nav {
+            gap: 2rem;
+            font-size: 1.1rem;
+        }
+        h1 {
+            font-size: 2.4rem;
+            margin-bottom: 2rem;
+        }
+        .kontakt-infos {
+            font-size: 1.15rem;
+            padding: 0 0.5rem;
+        }
     }
 
-    .logo-img {
-        max-width: 160px;
-        height: auto;
-    }
+    /* iPhone / Handy: Hamburger + gestapelte Karten */
+    @media (max-width: 700px) {
+        header {
+            margin: 1.5rem auto;
+            padding: 0 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between; /* Logo links, Button rechts */
+        }
 
-    nav {
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 0.8rem 1.4rem;
-        font-size: 1rem;
-    }
+        .logo-img {
+            max-width: 150px;
+            height: auto;
+        }
 
-    main {
-        width: 95%;
-        padding: 0 1rem;
-        margin-bottom: 2rem;
-    }
+        /* Mobile-Nav dropdown */
+        nav {
+            position: absolute;
+            top: 76px; /* etwas unter dem Header, X komplett sichtbar */
+            right: 0;
+            left: 0;
+            margin: 0 auto;
+            max-width: 1600px;
+            width: 95%;
+            background-color: #0B0B13;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem 0 1.2rem 0;
+            border-radius: 0 0 1rem 1rem;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+            display: none;
+            z-index: 20;
+        }
 
-    h1 {
-        font-size: 2.1rem;
-        margin-bottom: 1.6rem;
-    }
+        nav a {
+            font-size: 1.1rem;
+            border-bottom: none;
+        }
 
-    .kontakt-infos {
-        font-size: 1rem;
-        margin-bottom: 2rem;
-    }
+        .nav-toggle {
+            display: block;
+        }
 
-    /* Grid aus, Karten werden normale Blöcke */
-    .kontakt-links {
-        display: block;
-        margin-bottom: 2.5rem;
-    }
+        body.nav-open nav {
+            display: flex;
+        }
 
-    .kontakt-card,
-    .adresse-card {
-        width: 100%;
-        max-width: 100%;
-        min-width: 0;
-        height: auto;
-        padding: 1rem 0.8rem;
-        margin-bottom: 1.4rem;
-    }
+        body.nav-open .nav-toggle span:nth-child(1) {
+            transform: translateY(7px) rotate(45deg);
+        }
+        body.nav-open .nav-toggle span:nth-child(2) {
+            opacity: 0;
+        }
+        body.nav-open .nav-toggle span:nth-child(3) {
+            transform: translateY(-7px) rotate(-45deg);
+        }
 
-    .card-title {
-        font-size: 1.05rem;
-    }
+        main {
+            width: 95%;
+            padding: 0 1rem;
+            margin-bottom: 2rem;
+        }
 
-    .kontakt-card a,
-    .adresse-link {
-        font-size: 1rem;
-        flex-wrap: wrap;
-        row-gap: 0.4rem;
-    }
+        h1 {
+            font-size: 2.1rem;
+            margin-bottom: 1.6rem;
+        }
 
-    .social-address-row {
-        display: block; /* Instagram & Adresse auch untereinander */
+        .kontakt-infos {
+            font-size: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .kontakt-links {
+            display: block;
+            margin-bottom: 2.5rem;
+        }
+
+        .kontakt-card,
+        .adresse-card {
+            width: 100%;
+            max-width: 100%;
+            min-width: 0;
+            height: auto;
+            padding: 1rem 0.8rem;
+            margin-bottom: 1.4rem;
+        }
+
+        .card-title {
+            font-size: 1.05rem;
+        }
+
+        .kontakt-card a,
+        .adresse-link {
+            font-size: 1rem;
+            flex-wrap: wrap;
+            row-gap: 0.4rem;
+        }
+
+        .social-address-row {
+            display: block;
+        }
     }
-}
 </style>
 </head>
 <body>
 
 <header>
-<a href="index.html" aria-label="Startseite">
-    <img src="bilder/logo.png" alt="logo" class="logo-img" />
-</a>
+    <a href="index.html" aria-label="Startseite">
+        <img src="bilder/logo.png" alt="logo" class="logo-img" />
+    </a>
+
+    <!-- Hamburger-Button (nur Mobile per CSS sichtbar) -->
+    <button class="nav-toggle" aria-label="Navigation öffnen" onclick="document.body.classList.toggle('nav-open')">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+
     <nav aria-label="Hauptnavigation">
         <a href="ueber-uns.html">Team</a>
         <a href="preise.html">Preise</a>
@@ -310,7 +378,7 @@
         <div class="kontakt-card">
             <strong class="card-title">WhatsApp</strong>
             <a href="https://wa.me/41796457155" target="_blank" rel="noopener noreferrer">
-                <svg viewBox="0 0 24 24"><path d="M12.04 2.004A10 10 0 0 0 2 12.003c0 1.77.46 3.47 1.32 4.98l-1.4 5.12 5.25-1.38A9.99 9.99 0 0 0 12.04 22C17.53 22 22 17.524 22 12.003a9.998 9.998 0 0 0-9.96-9.999zM12.04 20c-1.53 0-3.02-.4-4.31-1.16l-.31-.19-3.11.82.83-3.03-.2-.32A7.986 7.986 0 0 1 4.04 12.003 8 8 0 1 1 20.05 12c0 4.41-3.58 8-8.01 8zm4.44-6.65c-.24-.12-1.41-.69-1.63-.76-.22-.07-.38-.12-.54.12-.17.24-.61.76-.74.92-.13.15-.27.17-.51.06-.24-.12-1.01-.37-1.93-1.19-.71-.62-1.18-1.39-1.32-1.62-.13-.23-.01-.36.11-.48.11-.11.25-.3.37-.45.12-.15.16-.26.24-.44.08-.18.04-.33-.02-.45-.06-.12-.53-1.28-.73-1.76-.19-.46-.39-.4-.54-.41-.13-.01-.28-.01-.44-.01-.15 0-.4.06-.63.29-.22.22-.86.84-.86 2.06s.89 2.39 1.01 2.56c.12.17 1.75 2.67 4.39 3.64C13.3 19.01 14 19.15 14.59 19.18c.36.02.77 0 1.17-.38.33-.32 1.08-1.05 1.23-2.07.13-.91-.13-1-.43-1.12z"/></svg>
+                <svg viewBox="0 0 24 24"><path d="M12.04 2.004A10 10 0 0 0 2 12.003c0 1.77.46 3.47 1.32 4.98l-1.4 5.12 5.25-1.38A9.99 9.99 0 0 0 12.04 22C17.53 22 22 17.524 22 12.003a9.998 9.998 0 0 0-9.96-9.999zM12.04 20c-1.53 0-3.02-.4-4.31-1.16l-.31-.19-3.11.82.83-3.03-.2-.32A7.986 7.986 0 0 1 4.04 12.003 8 8 0 1 1 20.05 12c0 4.41-3.58 8-8.01 8zm4.44-6.65c-.24-.12-1.41-.69-1.63-.76-.22-.07-.38-.12-.54.12-.17.24-.61.76-.74.92-.13.15-.27.17-.51.06-.24-.12-1.01-.37-1.93-1.19-.71-.62-1.18-1.39-1.32-1.62-.13-.23-.01-.36.11-.48.11-.11.25-.3 .37-.45.12-.15.16-.26.24-.44.08-.18.04-.33-.02-.45-.06-.12-.53-1.28-.73-1.76-.19-.46-.39-.4-.54-.41-.13-.01-.28-.01-.44-.01-.15 0-.4.06-.63.29-.22.22-.86.84-.86 2.06s.89 2.39 1.01 2.56c.12.17 1.75 2.67 4.39 3.64C13.3 19.01 14 19.15 14.59 19.18c.36.02.77 0 1.17-.38.33-.32 1.08-1.05 1.23-2.07.13-.91-.13-1-.43-1.12z"/></svg>
                 Nachricht via WhatsApp
             </a>
         </div>
@@ -341,5 +409,6 @@
         </div>
     </div>
 </main>
+
 </body>
 </html>
