@@ -93,7 +93,6 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        justify-content: center;
     }
     h1 {
         font-size: 3rem;
@@ -112,7 +111,7 @@
     }
     .kontakt-links {
         display: grid;
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: repeat(3, 1fr);  /* Desktop/Laptop: 3 Spalten */
         grid-template-rows: auto auto;
         gap: 2.5rem;
         margin-bottom: 3.5rem;
@@ -126,8 +125,8 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        justify-content: center;      /* Absolut mittig */
-        text-align: center;           /* Horizontal mittig für alle Inhalte */
+        justify-content: center;
+        text-align: center;
         min-width: 260px;
         max-width: 370px;
         width: 100%;
@@ -138,9 +137,7 @@
         color: #e213db;
         font-size: 1.15rem;
         text-align: center;
-        margin: 0;
-        margin-top: 0;
-        margin-bottom: 0.16em;
+        margin: 0 0 0.16em 0;
         padding: 0;
         width: 100%;
         justify-content: center;
@@ -192,19 +189,24 @@
         align-items: flex-start;
         width: 100%;
     }
-    main section h1 {
-        color: #FF13F0;
-        font-weight: 700;
-        margin-top: 0;
-        margin-bottom: 1.5rem;
-        font-size: 2.9rem;
-        text-align: center;
-    }
 
-    /* Zentrierung für den Text im Bereich unter dem Bild */
-    main section {
-        text-align: center;
+@media (max-width: 900px) {
+    header {
+        margin: 2rem auto 1.5rem auto;
     }
+    nav {
+        gap: 2rem;
+        font-size: 1.1rem;
+    }
+    h1 {
+        font-size: 2.4rem;
+        margin-bottom: 2rem;
+    }
+    .kontakt-infos {
+        font-size: 1.15rem;
+        padding: 0 0.5rem;
+    }
+}
 
 @media (max-width: 700px) {
     header {
@@ -233,14 +235,42 @@
         margin-bottom: 2rem;
     }
 
+    h1 {
+        font-size: 2.1rem;
+        margin-bottom: 1.6rem;
+    }
+
+    .kontakt-infos {
+        font-size: 1rem;
+        margin-bottom: 2rem;
+    }
+
+    /* Handy: alle Boxen untereinander */
     .kontakt-links {
         grid-template-columns: 1fr;
-        gap: 1.8rem;
+        gap: 1.4rem;
+    }
+
+    .kontakt-card, .adresse-card {
+        min-width: 0;
+        max-width: 100%;
+        height: auto;
+        padding: 1rem 0.8rem;
+    }
+
+    .card-title {
+        font-size: 1.05rem;
+    }
+
+    .kontakt-card a, .adresse-link {
+        font-size: 1rem;
+        flex-wrap: wrap;
+        row-gap: 0.4rem;
     }
 
     .social-address-row {
         flex-direction: column;
-        gap: 1.8rem;
+        gap: 1.4rem;
     }
 }
 </style>
