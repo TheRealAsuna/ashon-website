@@ -132,14 +132,53 @@
     main section {
         text-align: center;
     }
+    main section h1 {
+        color: #FF13F0;
+        font-weight: 700;
+        margin-top: 0;
+        margin-bottom: 1.5rem;
+        font-size: 2.9rem;
+        text-align: center;
+    }
+
+    /* Zentrierung für den Text im Bereich unter dem Bild */
+    main section {
+        text-align: center;
+    }
+
     @media (max-width: 700px) {
-        nav {
-            gap: 1.2rem;
-            font-size: 1.1rem;
+        header {
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+            margin: 1.5rem auto;
+            padding: 0 1rem;
         }
+
+        header img {
+            max-width: 160px;
+            height: auto;
+        }
+
+        nav {
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.8rem 1.4rem;
+            font-size: 1rem;
+        }
+
         main {
             width: 95%;
             padding: 0 1rem;
+            margin-bottom: 2rem;
+        }
+
+        main section h1 {
+            font-size: 2rem;
+        }
+
+        main section {
+            font-size: 1.05rem;
         }
     }
 </style>
