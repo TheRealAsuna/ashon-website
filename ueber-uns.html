@@ -109,12 +109,13 @@
         color: #FF13F0;
         text-align: left;
     }
-    /* Bild und Text auf gleicher Höhe unter dem h1 */
+
+    /* Block: Text + Teambild */
     .ueber-uns-row {
         display: flex;
         gap: 3rem;
         margin-bottom: 4rem;
-        align-items: flex-start; /* Startet oben, Bild & Text exakt unter h1 */
+        align-items: flex-start;
         flex-wrap: wrap;
     }
     .ueber-uns-text {
@@ -131,7 +132,7 @@
         max-width: 480px;
         min-width: 220px;
         display: flex;
-        align-items: flex-start; /* auch Bild oben ausrichten */
+        align-items: flex-start;
         justify-content: center;
     }
     .ueber-uns-image img {
@@ -145,6 +146,8 @@
         margin: 0;
         display: block;
     }
+
+    /* Mitarbeiter-Blöcke */
     .mitarbeiter-row {
         display: flex;
         gap: 3rem;
@@ -196,6 +199,8 @@
         color: #FF13F0;
         font-size: 1.08rem;
     }
+
+    /* Optionale Section-Headings (falls genutzt) */
     main section h1 {
         color: #FF13F0;
         font-weight: 700;
@@ -204,60 +209,101 @@
         font-size: 2.9rem;
         text-align: center;
     }
-
-    /* Zentrierung für den Text im Bereich unter dem Bild */
     main section {
         text-align: center;
     }
 
-@media (max-width: 700px) {
-    header {
-        flex-direction: column;
-        align-items: center;
-        gap: 1rem;
-        margin: 1.5rem auto;
-        padding: 0 1rem;
+    /* Tablet-Optimierung */
+    @media (max-width: 1000px) {
+        .ueber-uns-row {
+            gap: 2.5rem;
+            margin-bottom: 3.2rem;
+        }
+        .mitarbeiter-row {
+            gap: 2.4rem;
+            margin-bottom: 3rem;
+        }
     }
 
-    .logo-img {
-        max-width: 160px;
-        height: auto;
-    }
+    /* iPhone / Handy */
+    @media (max-width: 700px) {
+        header {
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+            margin: 1.5rem auto;
+            padding: 0 1rem;
+        }
 
-    nav {
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 0.8rem 1.4rem;
-        font-size: 1rem;
-    }
+        .logo-img {
+            max-width: 160px;
+            height: auto;
+        }
 
-    main {
-        width: 95%;
-        padding: 0 1rem;
-        margin-bottom: 2rem;
-    }
+        nav {
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.8rem 1.4rem;
+            font-size: 1rem;
+        }
 
-    h1 {
-        font-size: 2.1rem;
-        text-align: center;
-    }
+        main {
+            width: 95%;
+            padding: 0 1rem;
+            margin-bottom: 2rem;
+        }
 
-    .ueber-uns-row,
-    .mitarbeiter-row {
-        flex-direction: column;
-        align-items: center;
-        gap: 1.5rem;
-    }
+        h1 {
+            font-size: 2.1rem;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
 
-    .ueber-uns-text,
-    .mitarbeiter-info {
-        text-align: center;
+        .ueber-uns-row {
+            flex-direction: column;
+            align-items: center;
+            gap: 1.8rem;
+            margin-bottom: 3rem;
+        }
+
+        .ueber-uns-text {
+            font-size: 1.02rem;
+            text-align: center;
+        }
+
+        .ueber-uns-image img {
+            max-width: 320px;
+        }
+
+        .mitarbeiter-row {
+            flex-direction: column;
+            align-items: center;
+            gap: 1.6rem;          /* Abstand Bild <-> Text */
+            margin-bottom: 2.6rem;/* Abstand zwischen den Mitarbeitern */
+        }
+
+        .mitarbeiter-image img {
+            max-width: 260px;
+        }
+
+        .mitarbeiter-info {
+            text-align: center;
+            font-size: 1.01rem;
+        }
+
+        .mitarbeiter-name {
+            font-size: 1.35rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .mitarbeiter-dienstleistungen {
+            font-size: 1rem;
+            margin-bottom: 0.55rem;
+        }
     }
-}
 </style>
 </head>
 <body>
-
 
 <header>
 <a href="index.html" aria-label="Startseite">
@@ -273,18 +319,20 @@
 
 <main>
     <h1>Über uns</h1>
-     <!-- Erster Block: Text links, Bild rechts -->
+
+    <!-- Erster Block: Text + Teambild -->
     <div class="ueber-uns-row">
-      <div class="ueber-uns-text">
-        <b>ashon – be beauty be yourself.</b> Das ist nicht nur unser Claim, sondern unsere Haltung. Wir glauben, dass wahre Schönheit dort entsteht, wo man ganz man selbst sein darf.<br><br>
-        In unserer Hair Boutique im Zürcher Oberland vereinen wir moderne Trends und Techniken, persönliche Beratung und eine liebevolle Atmosphäre. Seit vielen Jahren dürfen wir Kundinnen und Kunden aus der ganzen Deutschschweiz – von Bern über St. Gallen bis Aargau – begleiten. Darauf sind wir stolz und dafür sind wir dankbar.<br><br>
-        Ob Du Lust auf einen neuen Look hast, Deine Persönlichkeit neu unterstreichen oder einfach entspannen möchtest – wir sind für Dich da. Lass Dich von unserem Team verwöhnen und erlebe, wie schön es ist, einfach Du selbst zu sein – für einen Look, der so einzigartig ist wie Du selbst.
-      </div>
-      <div class="ueber-uns-image">
-        <img src="bilder/Teamfoto.jpeg" alt="ashon Salon Team" />
-      </div>
+        <div class="ueber-uns-text">
+            <b>ashon – be beauty be yourself.</b> Das ist nicht nur unser Claim, sondern unsere Haltung. Wir glauben, dass wahre Schönheit dort entsteht, wo man ganz man selbst sein darf.<br><br>
+            In unserer Hair Boutique im Zürcher Oberland vereinen wir moderne Trends und Techniken, persönliche Beratung und eine liebevolle Atmosphäre. Seit vielen Jahren dürfen wir Kundinnen und Kunden aus der ganzen Deutschschweiz – von Bern über St. Gallen bis Aargau – begleiten. Darauf sind wir stolz und dafür sind wir dankbar.<br><br>
+            Ob Du Lust auf einen neuen Look hast, Deine Persönlichkeit neu unterstreichen oder einfach entspannen möchtest – wir sind für Dich da. Lass Dich von unserem Team verwöhnen und erlebe, wie schön es ist, einfach Du selbst zu sein – für einen Look, der so einzigartig ist wie Du selbst.
+        </div>
+        <div class="ueber-uns-image">
+            <img src="bilder/Teamfoto.jpeg" alt="ashon Salon Team" />
+        </div>
     </div>
-    <!-- Dreimal Mitarbeiterblock -->
+
+    <!-- Mitarbeiter 1 -->
     <div class="mitarbeiter-row">
         <div class="mitarbeiter-image">
             <img src="bilder/Sophie.jpeg" alt="Mitarbeiter Portrait Sophie Tzionas" />
@@ -297,6 +345,8 @@
             </div>
         </div>
     </div>
+
+    <!-- Mitarbeiter 2 -->
     <div class="mitarbeiter-row">
         <div class="mitarbeiter-image">
             <img src="bilder/Angelina.jpeg" alt="Mitarbeiter Portrait Angelina Heusser" />
@@ -309,6 +359,8 @@
             </div>
         </div>
     </div>
+
+    <!-- Mitarbeiter 3 -->
     <div class="mitarbeiter-row">
         <div class="mitarbeiter-image">
             <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=400&q=80" alt="Mitarbeiter Portrait" />
@@ -322,7 +374,6 @@
         </div>
     </div>
 </main>
-
 
 </body>
 </html>
