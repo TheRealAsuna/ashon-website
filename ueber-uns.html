@@ -49,6 +49,8 @@
         outline: none;
         transform: translateY(-4px);
     }
+
+    /* Header Desktop */
     header {
         max-width: 1600px;
         width: 95%;
@@ -59,17 +61,9 @@
         justify-content: space-between;
         user-select: none;
     }
-    .title {
-        font-weight: 700;
-        font-size: 3.5rem;
-        letter-spacing: 0.15em;
-        color: #FF13F0;
-        user-select: text;
-        flex-shrink: 0;
-        cursor: pointer;
-    }
-    .title:hover {
-        color: #e213db;
+    .logo-img {
+        height: auto;
+        max-width: 190px;
     }
     nav {
         display: flex;
@@ -95,6 +89,25 @@
         color: #e213db;
         outline: none;
     }
+
+    /* Hamburger-Button (nur Mobile) */
+    .nav-toggle {
+        display: none;
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 0.3rem;
+        margin-left: 1rem;
+    }
+    .nav-toggle span {
+        display: block;
+        width: 24px;
+        height: 2px;
+        background-color: #FF13F0;
+        margin: 5px 0;
+        transition: transform 0.3s ease, opacity 0.3s ease;
+    }
+
     main {
         max-width: 1400px;
         width: 90%;
@@ -151,12 +164,12 @@
     .mitarbeiter-row {
         display: flex;
         gap: 3rem;
-        margin-bottom: 3.5rem;   /* Abstand Text → nächster Block */
+        margin-bottom: 3.5rem;
         align-items: center;
         flex-wrap: wrap;
     }
     .mitarbeiter-row:last-of-type {
-        margin-bottom: 3.5rem;   /* gleich wie oben */
+        margin-bottom: 3.5rem;
     }
     .mitarbeiter-image {
         flex: 1 1 260px;
@@ -234,23 +247,59 @@
     /* iPhone / Handy */
     @media (max-width: 700px) {
         header {
-            flex-direction: column;
-            align-items: center;
-            gap: 1rem;
             margin: 1.5rem auto;
             padding: 0 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
         }
 
         .logo-img {
-            max-width: 160px;
+            max-width: 150px;
             height: auto;
         }
 
+        /* Mobile-Nav dropdown wie auf den anderen Seiten */
         nav {
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 0.8rem 1.4rem;
-            font-size: 1rem;
+            position: absolute;
+            top: 76px;
+            right: 0;
+            left: 0;
+            margin: 0 auto;
+            max-width: 1600px;
+            width: 95%;
+            background-color: #0B0B13;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem 0 1.2rem 0;
+            border-radius: 0 0 1rem 1rem;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+            display: none;
+            z-index: 20;
+        }
+
+        nav a {
+            font-size: 1.1rem;
+            border-bottom: none;
+        }
+
+        .nav-toggle {
+            display: block;
+        }
+
+        body.nav-open nav {
+            display: flex;
+        }
+
+        body.nav-open .nav-toggle span:nth-child(1) {
+            transform: translateY(7px) rotate(45deg);
+        }
+        body.nav-open .nav-toggle span:nth-child(2) {
+            opacity: 0;
+        }
+        body.nav-open .nav-toggle span:nth-child(3) {
+            transform: translateY(-7px) rotate(-45deg);
         }
 
         main {
@@ -284,8 +333,8 @@
         .mitarbeiter-row {
             flex-direction: column;
             align-items: center;
-            gap: 1.6rem;          /* Bild ↔ Text */
-            margin-bottom: 3rem;  /* überall gleich */
+            gap: 1.6rem;
+            margin-bottom: 3rem;
         }
 
         .mitarbeiter-row:last-of-type {
@@ -316,9 +365,17 @@
 <body>
 
 <header>
-<a href="index.html" aria-label="Startseite">
-    <img src="bilder/logo.png" alt="logo" class="logo-img" />
-</a>
+    <a href="index.html" aria-label="Startseite">
+        <img src="bilder/logo.png" alt="logo" class="logo-img" />
+    </a>
+
+    <!-- Hamburger-Button (nur Mobile per CSS sichtbar) -->
+    <button class="nav-toggle" aria-label="Navigation öffnen" onclick="document.body.classList.toggle('nav-open')">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+
     <nav aria-label="Hauptnavigation">
         <a href="ueber-uns.html" aria-current="page">Team</a>
         <a href="preise.html">Preise</a>
