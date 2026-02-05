@@ -27,7 +27,6 @@
         position: relative;
         padding-bottom: 0.25rem;
         border-bottom: 3px solid transparent;
-        justify-content: center;
     }
     a::after {
         content: '';
@@ -41,7 +40,8 @@
         border-radius: 2px;
         transform: translateX(-50%);
     }
-    a:hover::after, a:focus::after {
+    a:hover::after,
+    a:focus::after {
         width: 80%;
     }
     a:hover, a:focus {
@@ -78,7 +78,6 @@
         padding-bottom: 0.25rem;
         border-bottom: 3px solid transparent;
         transition: border-color 0.3s ease, color 0.3s ease;
-        justify-content: center;
     }
     nav a[aria-current="page"] {
         border-bottom-color: #e213db;
@@ -143,7 +142,8 @@
         width: 100%;
         justify-items: center;
     }
-    .kontakt-card, .adresse-card {
+    .kontakt-card,
+    .adresse-card {
         background: #140013;
         border-radius: 1.2rem;
         box-shadow: 0 2px 32px rgba(255,19,240,0.07);
@@ -165,28 +165,31 @@
         margin: 0 0 0.16em 0;
         padding: 0;
         width: 100%;
-        justify-content: center;
         display: flex;
+        justify-content: center;
     }
-    .kontakt-card strong, .adresse-card strong {
+    .kontakt-card strong,
+    .adresse-card strong {
         margin: 0;
         padding: 0;
     }
-    .kontakt-card a, .adresse-link {
+    .kontakt-card a,
+    .adresse-link {
         color: #FF13F0;
         border-bottom: none;
         font-weight: 600;
         font-size: 1.13rem;
+        display: flex;
         justify-content: center;
         align-items: center;
-        display: flex;
         gap: 0.7em;
         padding: 0;
         margin: 0;
         text-align: center;
         width: 100%;
     }
-    .kontakt-card svg, .adresse-link svg {
+    .kontakt-card svg,
+    .adresse-link svg {
         width: 1.35em;
         height: 1.35em;
         fill: #FF13F0;
@@ -233,7 +236,7 @@
         }
     }
 
-    /* iPhone / Handy: Hamburger + gestapelte, zentrierte Karten */
+    /* iPhone / Handy: Hamburger + gestapelte Karten */
     @media (max-width: 700px) {
         header {
             margin: 1.5rem auto;
@@ -248,7 +251,6 @@
             height: auto;
         }
 
-        /* Mobile-Nav dropdown */
         nav {
             position: absolute;
             top: 76px;
@@ -314,7 +316,7 @@
 
         .kontakt-card,
         .adresse-card {
-            width: calc(100% - 2rem);  /* links + rechts je 1rem Abstand */
+            width: calc(100% - 2rem);
             max-width: 420px;
             min-width: 0;
             height: auto;

@@ -27,7 +27,6 @@
         position: relative;
         padding-bottom: 0.25rem;
         border-bottom: 3px solid transparent;
-        justify-content: center;
     }
     a::after {
         content: '';
@@ -41,7 +40,8 @@
         border-radius: 2px;
         transform: translateX(-50%);
     }
-    a:hover::after, a:focus::after {
+    a:hover::after,
+    a:focus::after {
         width: 80%;
     }
     a:hover, a:focus {
@@ -78,19 +78,19 @@
         padding-bottom: 0.25rem;
         border-bottom: 3px solid transparent;
         transition: border-color 0.3s ease, color 0.3s ease;
-        justify-content: center;
     }
     nav a[aria-current="page"] {
         border-bottom-color: #e213db;
         color: #e213db;
     }
-    nav a:hover, nav a:focus {
+    nav a:hover:not([aria-current="page"]),
+    nav a:focus:not([aria-current="page"]) {
         border-bottom-color: #e213db;
         color: #e213db;
         outline: none;
     }
 
-    /* Hamburger-Button (wird nur auf Mobile angezeigt) */
+    /* Hamburger-Button (nur Mobile) */
     .nav-toggle {
         display: none;
         background: none;
@@ -153,7 +153,32 @@
         margin-top: 0;
         margin-bottom: 1.5rem;
         font-size: 2.9rem;
-        text-align: center;
+    }
+
+    /* Tablet-Optimierung */
+    @media (max-width: 1000px) and (min-width: 701px) {
+        header {
+            margin: 2.2rem auto 1.8rem auto;
+            padding: 0 1.5rem;
+        }
+        nav {
+            gap: 2rem;
+            font-size: 1.15rem;
+        }
+        main {
+            width: 92%;
+            padding: 0 1.5rem;
+        }
+        main section {
+            font-size: 1.15rem;
+        }
+        main section h1 {
+            font-size: 2.4rem;
+        }
+        .hero-image {
+            width: 92%;
+            margin-bottom: 2.5rem;
+        }
     }
 
     /* Mobile / Handy */
@@ -163,17 +188,16 @@
             padding: 0 1rem;
             display: flex;
             align-items: center;
-            justify-content: space-between; /* Logo links, Button rechts */
+            justify-content: space-between;
         }
 
         .logo-img {
             max-width: 150px;
         }
 
-        /* Desktop-Nav ausblenden, Mobile-Nav vorbereiten */
         nav {
             position: absolute;
-            top: 76px; /* etwas weiter nach unten, damit das X komplett sichtbar ist */
+            top: 76px;
             right: 0;
             left: 0;
             margin: 0 auto;
@@ -186,7 +210,7 @@
             padding: 1rem 0 1.2rem 0;
             border-radius: 0 0 1rem 1rem;
             box-shadow: 0 10px 25px rgba(0,0,0,0.4);
-            display: none; /* versteckt, bis geöffnet */
+            display: none;
             z-index: 20;
         }
 
@@ -195,17 +219,14 @@
             border-bottom: none;
         }
 
-        /* Hamburger anzeigen */
         .nav-toggle {
             display: block;
         }
 
-        /* Wenn Klasse .nav-open auf body, dann Nav anzeigen */
         body.nav-open nav {
             display: flex;
         }
 
-        /* Kleine Animation für das Icon (optional) */
         body.nav-open .nav-toggle span:nth-child(1) {
             transform: translateY(7px) rotate(45deg);
         }
@@ -240,7 +261,9 @@
 <body>
 
 <header>
-    <img src="bilder/logo.png" alt="logo" class="logo-img" />
+    <a href="index.html" aria-label="Startseite">
+        <img src="bilder/logo.png" alt="logo" class="logo-img" />
+    </a>
 
     <!-- Hamburger-Button (nur sichtbar auf Mobile per CSS) -->
     <button class="nav-toggle" aria-label="Navigation öffnen" onclick="document.body.classList.toggle('nav-open')">
