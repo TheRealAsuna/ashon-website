@@ -361,13 +361,29 @@ const modal = document.getElementById('imgModal');
 const modalImg = document.getElementById('modalImg');
 const closeBtn = document.querySelector('.close');
 
-// Bilder anklicken, öffnen das Modal
-document.querySelectorAll('.galerie-imgbox img').forEach(img => {
-    img.addEventListener('click', () => {
-        modal.classList.remove('hidden');
-        modalImg.src = img.src;
+// Funktion, um Click-Handler abhängig von der Breite zu setzen
+function setupImageClicks() {
+    const isDesktop = window.matchMedia('(min-width: 701px)').matches;
+    const images = document.querySelectorAll('.galerie-imgbox img');
+
+    images.forEach(img => {
+        // alte Listener entfernen, indem wir onclick zurücksetzen
+        img.onclick = null;
+
+        if (isDesktop) {
+            img.onclick = () => {
+                modal.classList.remove('hidden');
+                modalImg.src = img.src;
+            };
+        }
     });
-});
+}
+
+// Initial setzen
+setupImageClicks();
+
+// neu setzen, wenn Fenstergröße sich ändert (z.B. Rotate)
+window.addEventListener('resize', setupImageClicks);
 
 // Schließen beim Klick aufs X
 closeBtn.addEventListener('click', () => {
