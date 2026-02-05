@@ -49,6 +49,8 @@
         outline: none;
         transform: translateY(-4px);
     }
+
+    /* Header Desktop */
     header {
         max-width: 1600px;
         width: 95%;
@@ -58,6 +60,10 @@
         align-items: center;
         justify-content: space-between;
         user-select: none;
+    }
+    .logo-img {
+        height: auto;
+        max-width: 190px;
     }
     nav {
         display: flex;
@@ -83,6 +89,26 @@
         color: #e213db;
         outline: none;
     }
+
+    /* Hamburger-Button (wird nur auf Mobile angezeigt) */
+    .nav-toggle {
+        display: none;
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 0.3rem;
+        margin-left: 1rem;
+    }
+    .nav-toggle span {
+        display: block;
+        width: 24px;
+        height: 2px;
+        background-color: #FF13F0;
+        margin: 5px 0;
+        transition: transform 0.3s ease, opacity 0.3s ease;
+    }
+
+    /* Hero */
     .hero-image {
         max-width: 1600px;
         width: 95%;
@@ -96,11 +122,12 @@
         height: auto;
         display: block;
         border-radius: 1rem;
-        box-shadow: none;       /* Kein Shadow */
-        transition: none;       /* Keine Animation/Effekt */
-        cursor: default;        /* Kein Pointer-Icon */
+        box-shadow: none;
+        transition: none;
+        cursor: default;
         user-select: none;
     }
+
     main {
         max-width: 1400px;
         width: 90%;
@@ -117,7 +144,7 @@
         font-size: 1.3rem;
         font-weight: 400;
         line-height: 1.75;
-        text-align: left;
+        text-align: center;
         user-select: text;
     }
     main section h1 {
@@ -128,43 +155,70 @@
         font-size: 2.9rem;
         text-align: center;
     }
-    /* Zentrierung für den Text im Bereich unter dem Bild */
-    main section {
-        text-align: center;
-    }
-    main section h1 {
-        color: #FF13F0;
-        font-weight: 700;
-        margin-top: 0;
-        margin-bottom: 1.5rem;
-        font-size: 2.9rem;
-        text-align: center;
-    }
 
-    /* Zentrierung für den Text im Bereich unter dem Bild */
-    main section {
-        text-align: center;
-    }
-
+    /* Mobile / Handy */
     @media (max-width: 700px) {
         header {
+            margin: 1.5rem auto;
+            padding: 0 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between; /* Logo links, Button rechts */
+        }
+
+        .logo-img {
+            max-width: 150px;
+        }
+
+        /* Desktop-Nav ausblenden, Mobile-Nav vorbereiten */
+        nav {
+            position: absolute;
+            top: 64px; /* unter dem Header */
+            right: 0;
+            left: 0;
+            margin: 0 auto;
+            max-width: 1600px;
+            width: 95%;
+            background-color: #0B0B13;
             flex-direction: column;
             align-items: center;
             gap: 1rem;
-            margin: 1.5rem auto;
-            padding: 0 1rem;
+            padding: 1rem 0 1.2rem 0;
+            border-radius: 0 0 1rem 1rem;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+            display: none; /* versteckt, bis geöffnet */
+            z-index: 20;
         }
 
-        header img {
-            max-width: 160px;
-            height: auto;
+        nav a {
+            font-size: 1.1rem;
+            border-bottom: none;
         }
 
-        nav {
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 0.8rem 1.4rem;
-            font-size: 1rem;
+        /* Hamburger anzeigen */
+        .nav-toggle {
+            display: block;
+        }
+
+        /* Wenn Klasse .nav-open auf body, dann Nav anzeigen */
+        body.nav-open nav {
+            display: flex;
+        }
+
+        /* Kleine Animation für das Icon (optional) */
+        body.nav-open .nav-toggle span:nth-child(1) {
+            transform: translateY(7px) rotate(45deg);
+        }
+        body.nav-open .nav-toggle span:nth-child(2) {
+            opacity: 0;
+        }
+        body.nav-open .nav-toggle span:nth-child(3) {
+            transform: translateY(-7px) rotate(-45deg);
+        }
+
+        .hero-image {
+            width: 95%;
+            margin-bottom: 2.5rem;
         }
 
         main {
@@ -186,7 +240,15 @@
 <body>
 
 <header>
-    <img src="bilder/logo.png" alt="logo" />
+    <img src="bilder/logo.png" alt="logo" class="logo-img" />
+
+    <!-- Hamburger-Button (nur sichtbar auf Mobile per CSS) -->
+    <button class="nav-toggle" aria-label="Navigation öffnen" onclick="document.body.classList.toggle('nav-open')">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+
     <nav aria-label="Hauptnavigation">
         <a href="ueber-uns.html">Team</a>
         <a href="preise.html">Preise</a>
@@ -213,5 +275,6 @@
         </p>
     </section>
 </main>
+
 </body>
 </html>
