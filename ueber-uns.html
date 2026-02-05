@@ -151,12 +151,12 @@
     .mitarbeiter-row {
         display: flex;
         gap: 3rem;
-        margin-bottom: 3.2rem; /* einheitlicher Abstand */
+        margin-bottom: 3.5rem;   /* Abstand Text → nächster Block */
         align-items: center;
         flex-wrap: wrap;
     }
     .mitarbeiter-row:last-of-type {
-        margin-bottom: 3.6rem; /* etwas Luft nach unten */
+        margin-bottom: 3.5rem;   /* gleich wie oben */
     }
     .mitarbeiter-image {
         flex: 1 1 260px;
@@ -227,7 +227,7 @@
             margin-bottom: 3rem;
         }
         .mitarbeiter-row:last-of-type {
-            margin-bottom: 3.4rem;
+            margin-bottom: 3rem;
         }
     }
 
@@ -284,8 +284,8 @@
         .mitarbeiter-row {
             flex-direction: column;
             align-items: center;
-            gap: 1.6rem;          /* Abstand Bild <-> Text */
-            margin-bottom: 2.8rem; /* gleicher Abstand zwischen allen Mitarbeitern */
+            gap: 1.6rem;          /* Bild ↔ Text */
+            margin-bottom: 3rem;  /* überall gleich */
         }
 
         .mitarbeiter-row:last-of-type {
