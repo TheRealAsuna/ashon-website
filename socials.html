@@ -5,322 +5,521 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>ashon – Galerie</title>
 <style>
-    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap');
-    body {
-        background-color: #0B0B13;
-        color: #FF13F0;
-        font-family: 'Montserrat', sans-serif;
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
+    
+    /* ===== PREMIUM DESIGN SYSTEM 2025 ===== */
+    
+    :root {
+        --bg-primary: #0A0A14;
+        --bg-secondary: #1A0F1A;
+        --bg-card: linear-gradient(135deg, #1A0F1A 0%, #140D18 100%);
+        --text-primary: #FFFFFF;
+        --text-secondary: #F8F0F5;
+        --text-muted: #B8ADB3;
+        --pink-primary: #FF1493;
+        --pink-hover: #FF69B4;
+        --shadow-sm: 0 2px 16px rgba(255, 20, 147, 0.12);
+        --shadow-md: 0 4px 24px rgba(255, 20, 147, 0.18);
+        --shadow-lg: 0 8px 32px rgba(255, 20, 147, 0.25);
+        --shadow-glow: 0 0 40px rgba(255, 20, 147, 0.3);
+        --radius-sm: 0.5rem;
+        --radius-md: 1rem;
+        --radius-lg: 1.5rem;
+        --space-xs: 0.5rem;
+        --space-sm: 1rem;
+        --space-md: 1.5rem;
+        --space-lg: 2rem;
+        --space-xl: 3rem;
+        --space-2xl: 4rem;
+        --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    * {
+        box-sizing: border-box;
         margin: 0;
+        padding: 0;
+    }
+    
+    html {
+        scroll-behavior: smooth;
+    }
+    
+    body {
+        background-color: var(--bg-primary);
+        color: var(--text-secondary);
+        font-family: 'Montserrat', sans-serif;
         line-height: 1.6;
         font-weight: 400;
         min-height: 100vh;
         display: flex;
         flex-direction: column;
+        -webkit-font-smoothing: antialiased;
+        overflow-x: hidden;
     }
+    
+    /* ===== SCROLL PROGRESS ===== */
+    .scroll-progress {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 0%;
+        height: 3px;
+        background: linear-gradient(90deg, var(--pink-primary), var(--pink-hover));
+        z-index: 9999;
+        box-shadow: 0 0 10px rgba(255, 20, 147, 0.5);
+    }
+    
+    /* ===== SCROLLBAR ===== */
+    ::-webkit-scrollbar {
+        width: 10px;
+    }
+    
+    ::-webkit-scrollbar-track {
+        background: var(--bg-primary);
+    }
+    
+    ::-webkit-scrollbar-thumb {
+        background: linear-gradient(180deg, var(--pink-primary), var(--pink-hover));
+        border-radius: var(--radius-sm);
+    }
+    
+    /* ===== ANIMATIONS ===== */
+    @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+    
+    .reveal {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: all 0.8s var(--ease-smooth);
+    }
+    
+    .reveal.active {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    
+    /* ===== TYPOGRAPHY ===== */
+    h1 {
+        color: var(--text-primary);
+        font-weight: 700;
+        line-height: 1.2;
+        font-size: clamp(2rem, 5vw, 3rem);
+        background: linear-gradient(135deg, var(--text-primary) 0%, var(--pink-hover) 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+    
+    /* ===== LINKS ===== */
     a {
-        color: #FF13F0;
+        color: var(--pink-primary);
         text-decoration: none;
-        transition: color 0.3s ease;
-        display: flex;
+        transition: color 0.3s var(--ease-smooth);
+        display: inline-flex;
         align-items: center;
         gap: 0.4rem;
         position: relative;
-        padding-bottom: 0.25rem;
-        border-bottom: 3px solid transparent;
     }
-    a::after {
+    
+    a:hover, a:focus-visible {
+        color: var(--pink-hover);
+        outline: none;
+    }
+    
+    /* ===== HEADER ===== */
+    header {
+        max-width: 1600px;
+        width: 95%;
+        margin: var(--space-xl) auto var(--space-lg) auto;
+        padding: 0 var(--space-lg);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        user-select: none;
+        animation: fadeIn 0.6s ease-out;
+        z-index: 100;
+    }
+    
+    .logo-img {
+        height: auto;
+        max-width: 190px;
+        transition: transform 0.3s var(--ease-smooth);
+        filter: drop-shadow(0 2px 8px rgba(255, 20, 147, 0.2));
+    }
+    
+    .logo-img:hover {
+        transform: scale(1.05);
+    }
+    
+    nav {
+        display: flex;
+        gap: var(--space-xl);
+        font-weight: 600;
+        font-size: 1.3rem;
+    }
+    
+    nav a::after {
         content: '';
         position: absolute;
         width: 0;
         height: 3px;
         bottom: 0;
         left: 50%;
-        background-color: #e213db;
-        transition: all 0.3s ease;
+        background: linear-gradient(90deg, var(--pink-primary), var(--pink-hover));
+        transition: all 0.3s var(--ease-smooth);
         border-radius: 2px;
         transform: translateX(-50%);
     }
-    a:hover::after,
-    a:focus::after {
-        width: 80%;
+    
+    nav a:hover::after,
+    nav a[aria-current="page"]::after {
+        width: 100%;
     }
-    a:hover, a:focus {
-        color: #e213db;
-        outline: none;
-        transform: translateY(-4px);
-    }
-
-    /* Header Desktop */
-    header {
-        max-width: 1600px;
-        width: 95%;
-        margin: 3rem auto 2rem auto;
-        padding: 0 2rem;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        user-select: none;
-    }
-    .logo-img {
-        height: auto;
-        max-width: 190px;
-    }
-    nav {
-        display: flex;
-        gap: 3rem;
-        font-weight: 700;
-        font-size: 1.3rem;
-        justify-content: flex-end;
-        flex-grow: 1;
-        flex-wrap: nowrap;
-    }
-    nav a {
-        padding-bottom: 0.25rem;
-        border-bottom: 3px solid transparent;
-        transition: border-color 0.3s ease, color 0.3s ease;
-    }
-    nav a[aria-current="page"] {
-        border-bottom-color: #e213db;
-        color: #e213db;
-    }
-    nav a:hover:not([aria-current="page"]),
-    nav a:focus:not([aria-current="page"]) {
-        border-bottom-color: #e213db;
-        color: #e213db;
-        outline: none;
-    }
-
-    /* Hamburger-Button (nur Mobile) */
+    
     .nav-toggle {
         display: none;
         background: none;
         border: none;
         cursor: pointer;
-        padding: 0.3rem;
-        margin-left: 1rem;
+        padding: var(--space-xs);
+        z-index: 200;
     }
+    
     .nav-toggle span {
         display: block;
-        width: 24px;
-        height: 2px;
-        background-color: #FF13F0;
+        width: 26px;
+        height: 3px;
+        background-color: var(--pink-primary);
         margin: 5px 0;
-        transition: transform 0.3s ease, opacity 0.3s ease;
+        transition: all 0.3s var(--ease-smooth);
+        border-radius: 2px;
     }
-
+    
+    /* ===== MAIN ===== */
     main {
         max-width: 1400px;
         width: 90%;
-        margin: 0 auto 4rem auto;
-        padding: 0 2rem;
+        margin: 0 auto var(--space-2xl) auto;
+        padding: 0 var(--space-lg);
         flex-grow: 1;
     }
-    h1 {
-        font-size: 3rem;
-        font-weight: 700;
-        margin-bottom: 2rem;
+    
+    main h1 {
+        margin-bottom: var(--space-lg);
         text-align: center;
-        color: #FF13F0;
     }
+    
     .caption {
-        color: #FF13F0;
-        margin-top: 1.3rem;
-        margin-bottom: 2rem;
+        color: var(--text-secondary);
+        margin-bottom: var(--space-xl);
         text-align: center;
-        font-size: 1.3rem;
-        font-weight: 600;
-        letter-spacing: 0.03em;
+        font-size: 1.25rem;
+        font-weight: 500;
     }
+    
+    /* ===== GALLERY GRID - PREMIUM ===== */
     .galerie-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-        gap: 1.5rem;
-        justify-items: center;
-        margin-top: 2rem;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: var(--space-lg);
+        margin-top: var(--space-lg);
     }
+    
     .galerie-imgbox {
-        display: block;
-        border-radius: 1.2rem;
+        position: relative;
+        border-radius: var(--radius-lg);
         overflow: hidden;
-        box-shadow: 0 2px 20px rgba(255,19,240,0.08);
-        background: #181818;
-        border: 2px solid transparent;
         aspect-ratio: 1/1;
-        max-width: 260px;
-        min-width: 180px;
-        width: 100%;
+        cursor: pointer;
+        transition: all 0.3s var(--ease-smooth);
     }
+    
+    .galerie-imgbox::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(135deg, rgba(255, 20, 147, 0.1), transparent);
+        opacity: 0;
+        transition: opacity 0.3s var(--ease-smooth);
+        z-index: 1;
+    }
+    
+    .galerie-imgbox:hover::before {
+        opacity: 1;
+    }
+    
+    .galerie-imgbox:hover {
+        transform: translateY(-5px) scale(1.02);
+        box-shadow: var(--shadow-lg);
+    }
+    
     .galerie-imgbox img {
         width: 100%;
         height: 100%;
         object-fit: cover;
-        border-radius: 1.2rem;
-        background: #181818;
         display: block;
-        cursor: pointer;
-        box-shadow: 0 2px 20px rgba(255,19,240,0.08);
-        transition: box-shadow 0.4s, filter 0.4s;
+        transition: all 0.3s var(--ease-smooth);
     }
-    .galerie-imgbox img:hover {
-        box-shadow:
-            0 0 80px 30px #FF13F0,
-            0 0 50px 15px #e213db,
-            0 0 8px 2px #FFFFFF;
-        filter: brightness(1.18) saturate(1.4) contrast(1.07);
+    
+    .galerie-imgbox:hover img {
+        filter: brightness(1.1) saturate(1.1);
     }
-
-    /* Modal Styles (Großansicht) */
+    
+    /* ===== MODAL ===== */
     .modal {
         display: none;
         position: fixed;
         inset: 0;
         z-index: 999;
-        background-color: rgba(0,0,0,0.92);
-        display: flex;
+        background-color: rgba(0,0,0,0.94);
         align-items: center;
         justify-content: center;
-        padding: 1.5rem;
-        box-sizing: border-box;
+        padding: var(--space-lg);
+        backdrop-filter: blur(10px);
     }
+    
     .modal.hidden {
         display: none;
     }
+    
+    .modal:not(.hidden) {
+        display: flex;
+    }
+    
     .modal-content {
         max-width: 90vw;
-        max-height: 80vh;
-        width: auto;
-        height: auto;
-        border-radius: 1.2rem;
-        box-shadow: 0 4px 40px #FF13F0;
-        animation: zoom 0.35s;
-        object-fit: contain;
-        display: block;
-        margin: 0 auto;
+        max-height: 85vh;
+        border-radius: var(--radius-lg);
+        box-shadow: var(--shadow-glow);
+        animation: zoomIn 0.3s ease;
     }
-    @keyframes zoom {
-        from {transform: scale(0.9);}
-        to {transform: scale(1);}
+    
+    @keyframes zoomIn {
+        from {
+            transform: scale(0.9);
+            opacity: 0;
+        }
+        to {
+            transform: scale(1);
+            opacity: 1;
+        }
     }
+    
     .close {
         position: fixed;
-        top: 16px;
-        right: 24px;
-        color: #FFF;
-        font-size: 40px;
+        top: 20px;
+        right: 30px;
+        color: var(--text-primary);
+        font-size: 45px;
         font-weight: bold;
         cursor: pointer;
         user-select: none;
-        transition: color 0.2s;
+        transition: all 0.3s var(--ease-smooth);
         z-index: 1000;
     }
-    .close:hover { color: #e213db; }
-
-    @media (max-width: 900px) {
-        nav { gap: 1.5rem; font-size: 1.1rem; }
-        .galerie-grid { grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); }
+    
+    .close:hover {
+        color: var(--pink-hover);
+        transform: rotate(90deg);
     }
-
+    
+    /* ===== FOOTER ===== */
+    footer {
+        background: var(--bg-card);
+        border-top: 1px solid rgba(255, 20, 147, 0.15);
+        padding: var(--space-2xl) var(--space-lg) var(--space-lg);
+        margin-top: auto;
+    }
+    
+    .footer-content {
+        max-width: 1400px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: var(--space-xl);
+    }
+    
+    .footer-section h3 {
+        font-size: 1.5rem;
+        color: var(--pink-primary);
+        margin-bottom: var(--space-sm);
+    }
+    
+    .footer-section h4 {
+        font-size: 1.25rem;
+        margin-bottom: var(--space-sm);
+        color: var(--text-primary);
+    }
+    
+    .footer-tagline {
+        color: var(--pink-hover);
+        font-style: italic;
+        margin-bottom: var(--space-sm);
+    }
+    
+    .footer-section p {
+        color: var(--text-secondary);
+        line-height: 1.7;
+    }
+    
+    .footer-links {
+        display: flex;
+        gap: var(--space-md);
+        margin-top: var(--space-sm);
+        flex-wrap: wrap;
+    }
+    
+    .footer-links a::before {
+        content: '→';
+        position: absolute;
+        left: -20px;
+        opacity: 0;
+        transition: all 0.3s var(--ease-smooth);
+    }
+    
+    .footer-links a:hover {
+        transform: translateX(5px);
+    }
+    
+    .footer-links a:hover::before {
+        left: -15px;
+        opacity: 1;
+    }
+    
+    .footer-bottom {
+        max-width: 1400px;
+        margin: var(--space-xl) auto 0;
+        padding-top: var(--space-lg);
+        border-top: 1px solid rgba(255, 20, 147, 0.1);
+        text-align: center;
+    }
+    
+    .footer-bottom p {
+        color: var(--text-muted);
+        font-size: 0.875rem;
+    }
+    
+    /* ===== TABLET ===== */
+    @media (max-width: 1000px) {
+        .galerie-grid {
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        }
+    }
+    
+    /* ===== MOBILE ===== */
     @media (max-width: 700px) {
         header {
-            margin: 1.5rem auto;
-            padding: 0 1rem;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
+            margin: var(--space-md) auto var(--space-sm) auto;
+            padding: 0 var(--space-md);
+            width: 100%;
         }
-
+        
         .logo-img {
-            max-width: 150px;
-            height: auto;
+            max-width: 140px;
         }
-
-        /* Mobile-Nav dropdown wie auf den anderen Seiten */
+        
         nav {
-            position: absolute;
-            top: 76px;
-            right: 0;
+            position: fixed;
+            top: 0;
             left: 0;
-            margin: 0 auto;
-            max-width: 1600px;
-            width: 95%;
-            background-color: #0B0B13;
+            right: 0;
+            width: 100%;
+            height: 100vh;
+            background: rgba(10, 10, 20, 0.95);
+            backdrop-filter: blur(20px) saturate(180%);
             flex-direction: column;
             align-items: center;
-            gap: 1rem;
-            padding: 1rem 0 1.2rem 0;
-            border-radius: 0 0 1rem 1rem;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+            justify-content: center;
             display: none;
-            z-index: 20;
+            z-index: 150;
         }
-
+        
         nav a {
-            font-size: 1.1rem;
-            border-bottom: none;
+            font-size: 1.5rem;
         }
-
+        
+        nav a::after {
+            display: none;
+        }
+        
         .nav-toggle {
             display: block;
         }
-
+        
+        body.nav-open {
+            overflow: hidden;
+        }
+        
         body.nav-open nav {
             display: flex;
+            animation: fadeIn 0.3s ease;
         }
-
+        
         body.nav-open .nav-toggle span:nth-child(1) {
-            transform: translateY(7px) rotate(45deg);
+            transform: translateY(8px) rotate(45deg);
         }
+        
         body.nav-open .nav-toggle span:nth-child(2) {
             opacity: 0;
         }
+        
         body.nav-open .nav-toggle span:nth-child(3) {
-            transform: translateY(-7px) rotate(-45deg);
+            transform: translateY(-8px) rotate(-45deg);
         }
-
+        
         main {
-            width: 95%;
-            padding: 0 1rem;
-            margin-bottom: 2rem;
+            width: 100%;
+            padding: 0 var(--space-md);
         }
-
-        h1 {
-            font-size: 2rem;
+        
+        .galerie-grid {
+            grid-template-columns: repeat(2, 1fr);
+            gap: var(--space-sm);
         }
-
-        .caption {
-            font-size: 1.05rem;
+        
+        footer {
+            padding: var(--space-xl) var(--space-md) var(--space-md);
         }
-
+        
+        .footer-content {
+            grid-template-columns: 1fr;
+            text-align: center;
+        }
+        
+        .footer-links {
+            justify-content: center;
+        }
+        
+        .footer-links a::before {
+            display: none;
+        }
+    }
+    
+    @media (max-width: 400px) {
         .galerie-grid {
             grid-template-columns: 1fr;
-            gap: 1.2rem;
-        }
-
-        .modal {
-            padding: 1rem;
-        }
-        .modal-content {
-            max-width: 94vw;
-            max-height: 78vh;
         }
     }
 </style>
 </head>
 <body>
 
+<div class="scroll-progress" id="scrollProgress"></div>
+
 <header>
     <a href="index.html" aria-label="Startseite">
-        <img src="bilder/logo.png" alt="logo" class="logo-img" />
+        <img src="bilder/logo.png" alt="ashon logo" class="logo-img" />
     </a>
 
-    <!-- Hamburger-Button (nur Mobile per CSS sichtbar) -->
-    <button class="nav-toggle" aria-label="Navigation öffnen" onclick="document.body.classList.toggle('nav-open')">
+    <button class="nav-toggle" aria-label="Navigation" onclick="toggleNav()">
         <span></span>
         <span></span>
         <span></span>
     </button>
 
-    <nav aria-label="Hauptnavigation">
+    <nav>
         <a href="ueber-uns.html">Team</a>
         <a href="preise.html">Preise</a>
         <a href="socials.html" aria-current="page">Galerie</a>
@@ -329,47 +528,97 @@
 </header>
 
 <main>
-    <h1>Galerie & Inspiration</h1>
-    <div class="caption">Entdecke echte Looks, Farbtöne & Stylings aus dem Salon – Inspiration pur!</div>
+    <h1 class="reveal">Galerie & Inspiration</h1>
+    <div class="caption reveal">Entdecke echte Looks, Farbtöne & Stylings aus dem Salon – Inspiration pur!</div>
+    
     <div class="galerie-grid">
-        <div class="galerie-imgbox"><img src="bilder/1.jpg" alt="Friseursalon Bild 1"></div>
-        <div class="galerie-imgbox"><img src="bilder/2.jpg" alt="Friseursalon Bild 2"></div>
-        <div class="galerie-imgbox"><img src="bilder/3.jpg" alt="Friseursalon Bild 3"></div>
-        <div class="galerie-imgbox"><img src="bilder/4.jpg" alt="Friseursalon Bild 4"></div>
-        <div class="galerie-imgbox"><img src="bilder/5.jpg" alt="Friseursalon Bild 5"></div>
-        <div class="galerie-imgbox"><img src="bilder/6.jpg" alt="Friseursalon Bild 6"></div>
-        <div class="galerie-imgbox"><img src="bilder/7.jpg" alt="Friseursalon Bild 7"></div>
-        <div class="galerie-imgbox"><img src="bilder/8.jpg" alt="Friseursalon Bild 8"></div>
-        <div class="galerie-imgbox"><img src="bilder/9.jpg" alt="Friseursalon Bild 9"></div>
-        <div class="galerie-imgbox"><img src="bilder/10.jpg" alt="Friseursalon Bild 10"></div>
-        <div class="galerie-imgbox"><img src="bilder/11.jpg" alt="Friseursalon Bild 11"></div>
-        <div class="galerie-imgbox"><img src="bilder/12.jpg" alt="Friseursalon Bild 12"></div>
-        <div class="galerie-imgbox"><img src="bilder/13.jpg" alt="Friseursalon Bild 13"></div>
-        <div class="galerie-imgbox"><img src="bilder/15.jpg" alt="Friseursalon Bild 15"></div>
-        <div class="galerie-imgbox"><img src="bilder/16.jpg" alt="Friseursalon Bild 16"></div>
+        <div class="galerie-imgbox reveal"><img src="bilder/1.jpg" alt="Friseursalon Werk 1"></div>
+        <div class="galerie-imgbox reveal"><img src="bilder/2.jpg" alt="Friseursalon Werk 2"></div>
+        <div class="galerie-imgbox reveal"><img src="bilder/3.jpg" alt="Friseursalon Werk 3"></div>
+        <div class="galerie-imgbox reveal"><img src="bilder/4.jpg" alt="Friseursalon Werk 4"></div>
+        <div class="galerie-imgbox reveal"><img src="bilder/5.jpg" alt="Friseursalon Werk 5"></div>
+        <div class="galerie-imgbox reveal"><img src="bilder/6.jpg" alt="Friseursalon Werk 6"></div>
+        <div class="galerie-imgbox reveal"><img src="bilder/7.jpg" alt="Friseursalon Werk 7"></div>
+        <div class="galerie-imgbox reveal"><img src="bilder/8.jpg" alt="Friseursalon Werk 8"></div>
+        <div class="galerie-imgbox reveal"><img src="bilder/9.jpg" alt="Friseursalon Werk 9"></div>
+        <div class="galerie-imgbox reveal"><img src="bilder/10.jpg" alt="Friseursalon Werk 10"></div>
+        <div class="galerie-imgbox reveal"><img src="bilder/11.jpg" alt="Friseursalon Werk 11"></div>
+        <div class="galerie-imgbox reveal"><img src="bilder/12.jpg" alt="Friseursalon Werk 12"></div>
+        <div class="galerie-imgbox reveal"><img src="bilder/13.jpg" alt="Friseursalon Werk 13"></div>
+        <div class="galerie-imgbox reveal"><img src="bilder/15.jpg" alt="Friseursalon Werk 15"></div>
+        <div class="galerie-imgbox reveal"><img src="bilder/16.jpg" alt="Friseursalon Werk 16"></div>
     </div>
 </main>
 
 <div id="imgModal" class="modal hidden">
     <span class="close">&times;</span>
-    <img class="modal-content" id="modalImg" alt="Großansicht Bild">
+    <img class="modal-content" id="modalImg" alt="Großansicht">
 </div>
 
+<footer>
+    <div class="footer-content">
+        <div class="footer-section">
+            <h3>ashon</h3>
+            <p class="footer-tagline">be beauty be yourself.</p>
+            <p>Ihre exklusive Hair Boutique im Zürcher Oberland für Style, Beauty und Wohlbefinden.</p>
+        </div>
+        <div class="footer-section">
+            <h4>Öffnungszeiten</h4>
+            <p>
+                Montag - Freitag: 9:00 - 18:30<br>
+                Samstag: 9:00 - 16:00<br>
+                Sonntag: Geschlossen
+            </p>
+        </div>
+        <div class="footer-section">
+            <h4>Kontakt</h4>
+            <p>
+                Telefon: +41 79 645 71 55<br>
+                Usterstrasse 21<br>
+                8614 Bertschikon
+            </p>
+            <div class="footer-links">
+                <a href="kontakt.html">Kontaktformular</a>
+                <a href="https://www.instagram.com/sophie.tzionas/" target="_blank" rel="noopener noreferrer">Instagram</a>
+            </div>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>&copy; 2025 ashon Hair Boutique. Alle Rechte vorbehalten.</p>
+    </div>
+</footer>
+
 <script>
-// Modal Referenzen
+// Scroll Progress
+window.addEventListener('scroll', () => {
+    const winScroll = document.documentElement.scrollTop;
+    const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    const scrolled = (winScroll / height) * 100;
+    document.getElementById('scrollProgress').style.width = scrolled + '%';
+});
+
+// Scroll Reveal
+const revealElements = document.querySelectorAll('.reveal');
+const revealOnScroll = () => {
+    revealElements.forEach(el => {
+        const elementTop = el.getBoundingClientRect().top;
+        if (elementTop < window.innerHeight - 100) {
+            el.classList.add('active');
+        }
+    });
+};
+window.addEventListener('scroll', revealOnScroll);
+window.addEventListener('load', revealOnScroll);
+
+// Modal
 const modal = document.getElementById('imgModal');
 const modalImg = document.getElementById('modalImg');
 const closeBtn = document.querySelector('.close');
 
-// Funktion, um Click-Handler abhängig von der Breite zu setzen
-function setupImageClicks() {
+const setupImageClicks = () => {
     const isDesktop = window.matchMedia('(min-width: 701px)').matches;
-    const images = document.querySelectorAll('.galerie-imgbox img');
-
-    images.forEach(img => {
-        // alte Listener entfernen, indem wir onclick zurücksetzen
+    document.querySelectorAll('.galerie-imgbox img').forEach(img => {
         img.onclick = null;
-
         if (isDesktop) {
             img.onclick = () => {
                 modal.classList.remove('hidden');
@@ -377,24 +626,29 @@ function setupImageClicks() {
             };
         }
     });
-}
-
-// Initial setzen
+};
 setupImageClicks();
-
-// neu setzen, wenn Fenstergröße sich ändert (z.B. Rotate)
 window.addEventListener('resize', setupImageClicks);
 
-// Schließen beim Klick aufs X
-closeBtn.addEventListener('click', () => {
-    modal.classList.add('hidden');
+closeBtn.addEventListener('click', () => modal.classList.add('hidden'));
+modal.addEventListener('click', (e) => {
+    if (e.target === modal) modal.classList.add('hidden');
 });
-
-// Schließen beim Klick auf den Hintergrund
-modal.addEventListener('click', (event) => {
-    if (event.target === modal) {
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && !modal.classList.contains('hidden')) {
         modal.classList.add('hidden');
     }
+});
+
+// Mobile Nav
+function toggleNav() {
+    document.body.classList.toggle('nav-open');
+}
+
+document.querySelectorAll('nav a').forEach(link => {
+    link.addEventListener('click', () => {
+        document.body.classList.remove('nav-open');
+    });
 });
 </script>
 

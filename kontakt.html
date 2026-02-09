@@ -5,357 +5,511 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>ashon – Kontakt</title>
 <style>
-    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap');
-    body {
-        background-color: #0B0B13;
-        color: #FF13F0;
-        font-family: 'Montserrat', sans-serif;
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
+    
+    /* ===== PREMIUM DESIGN SYSTEM 2025 ===== */
+    
+    :root {
+        --bg-primary: #0A0A14;
+        --bg-secondary: #1A0F1A;
+        --bg-card: linear-gradient(135deg, #1A0F1A 0%, #140D18 100%);
+        --text-primary: #FFFFFF;
+        --text-secondary: #F8F0F5;
+        --text-muted: #B8ADB3;
+        --pink-primary: #FF1493;
+        --pink-hover: #FF69B4;
+        --shadow-sm: 0 2px 16px rgba(255, 20, 147, 0.12);
+        --shadow-md: 0 4px 24px rgba(255, 20, 147, 0.18);
+        --shadow-lg: 0 8px 32px rgba(255, 20, 147, 0.25);
+        --shadow-glow: 0 0 40px rgba(255, 20, 147, 0.3);
+        --radius-sm: 0.5rem;
+        --radius-md: 1rem;
+        --radius-lg: 1.5rem;
+        --space-xs: 0.5rem;
+        --space-sm: 1rem;
+        --space-md: 1.5rem;
+        --space-lg: 2rem;
+        --space-xl: 3rem;
+        --space-2xl: 4rem;
+        --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    * {
+        box-sizing: border-box;
         margin: 0;
+        padding: 0;
+    }
+    
+    html {
+        scroll-behavior: smooth;
+    }
+    
+    body {
+        background-color: var(--bg-primary);
+        color: var(--text-secondary);
+        font-family: 'Montserrat', sans-serif;
         line-height: 1.6;
         font-weight: 400;
         min-height: 100vh;
         display: flex;
         flex-direction: column;
+        -webkit-font-smoothing: antialiased;
+        overflow-x: hidden;
     }
+    
+    /* ===== SCROLL PROGRESS ===== */
+    .scroll-progress {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 0%;
+        height: 3px;
+        background: linear-gradient(90deg, var(--pink-primary), var(--pink-hover));
+        z-index: 9999;
+        box-shadow: 0 0 10px rgba(255, 20, 147, 0.5);
+    }
+    
+    /* ===== SCROLLBAR ===== */
+    ::-webkit-scrollbar {
+        width: 10px;
+    }
+    
+    ::-webkit-scrollbar-track {
+        background: var(--bg-primary);
+    }
+    
+    ::-webkit-scrollbar-thumb {
+        background: linear-gradient(180deg, var(--pink-primary), var(--pink-hover));
+        border-radius: var(--radius-sm);
+    }
+    
+    /* ===== ANIMATIONS ===== */
+    @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+    
+    .reveal {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: all 0.8s var(--ease-smooth);
+    }
+    
+    .reveal.active {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    
+    /* ===== TYPOGRAPHY ===== */
+    h1 {
+        color: var(--text-primary);
+        font-weight: 700;
+        line-height: 1.2;
+        font-size: clamp(2rem, 5vw, 3rem);
+        background: linear-gradient(135deg, var(--text-primary) 0%, var(--pink-hover) 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+    
+    /* ===== LINKS ===== */
     a {
-        color: #FF13F0;
+        color: var(--pink-primary);
         text-decoration: none;
-        transition: color 0.3s ease, transform 0.3s ease;
-        display: flex;
+        transition: color 0.3s var(--ease-smooth);
+        display: inline-flex;
         align-items: center;
         gap: 0.4rem;
         position: relative;
-        padding-bottom: 0.25rem;
-        border-bottom: 3px solid transparent;
     }
-    a::after {
+    
+    a:hover, a:focus-visible {
+        color: var(--pink-hover);
+        outline: none;
+    }
+    
+    /* ===== HEADER ===== */
+    header {
+        max-width: 1600px;
+        width: 95%;
+        margin: var(--space-xl) auto var(--space-lg) auto;
+        padding: 0 var(--space-lg);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        user-select: none;
+        animation: fadeIn 0.6s ease-out;
+        z-index: 100;
+    }
+    
+    .logo-img {
+        height: auto;
+        max-width: 190px;
+        transition: transform 0.3s var(--ease-smooth);
+        filter: drop-shadow(0 2px 8px rgba(255, 20, 147, 0.2));
+    }
+    
+    .logo-img:hover {
+        transform: scale(1.05);
+    }
+    
+    nav {
+        display: flex;
+        gap: var(--space-xl);
+        font-weight: 600;
+        font-size: 1.3rem;
+    }
+    
+    nav a::after {
         content: '';
         position: absolute;
         width: 0;
         height: 3px;
         bottom: 0;
         left: 50%;
-        background-color: #e213db;
-        transition: all 0.3s ease;
+        background: linear-gradient(90deg, var(--pink-primary), var(--pink-hover));
+        transition: all 0.3s var(--ease-smooth);
         border-radius: 2px;
         transform: translateX(-50%);
     }
-    a:hover::after,
-    a:focus::after {
-        width: 80%;
+    
+    nav a:hover::after,
+    nav a[aria-current="page"]::after {
+        width: 100%;
     }
-    a:hover, a:focus {
-        color: #e213db;
-        outline: none;
-        transform: translateY(-4px);
-    }
-
-    /* Header Desktop */
-    header {
-        max-width: 1600px;
-        width: 95%;
-        margin: 3rem auto 2rem auto;
-        padding: 0 2rem;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        user-select: none;
-    }
-    .logo-img {
-        height: auto;
-        max-width: 190px;
-    }
-    nav {
-        display: flex;
-        gap: 3rem;
-        font-weight: 700;
-        font-size: 1.3rem;
-        justify-content: flex-end;
-        flex-grow: 1;
-        flex-wrap: nowrap;
-    }
-    nav a {
-        padding-bottom: 0.25rem;
-        border-bottom: 3px solid transparent;
-        transition: border-color 0.3s ease, color 0.3s ease;
-    }
-    nav a[aria-current="page"] {
-        border-bottom-color: #e213db;
-        color: #e213db;
-    }
-    nav a:hover:not([aria-current="page"]),
-    nav a:focus:not([aria-current="page"]) {
-        border-bottom-color: #e213db;
-        color: #e213db;
-        outline: none;
-    }
-
-    /* Hamburger-Button (nur Mobile) */
+    
     .nav-toggle {
         display: none;
         background: none;
         border: none;
         cursor: pointer;
-        padding: 0.3rem;
-        margin-left: 1rem;
+        padding: var(--space-xs);
+        z-index: 200;
     }
+    
     .nav-toggle span {
         display: block;
-        width: 24px;
-        height: 2px;
-        background-color: #FF13F0;
+        width: 26px;
+        height: 3px;
+        background-color: var(--pink-primary);
         margin: 5px 0;
-        transition: transform 0.3s ease, opacity 0.3s ease;
+        transition: all 0.3s var(--ease-smooth);
+        border-radius: 2px;
     }
-
+    
+    /* ===== MAIN ===== */
     main {
         max-width: 1400px;
         width: 90%;
-        margin: 0 auto 4rem auto;
-        padding: 0 2rem;
+        margin: 0 auto var(--space-2xl) auto;
+        padding: 0 var(--space-lg);
         flex-grow: 1;
         display: flex;
         flex-direction: column;
         align-items: center;
     }
-    h1 {
-        font-size: 3rem;
-        font-weight: 700;
-        margin-bottom: 2.5rem;
-        color: #FF13F0;
+    
+    main h1 {
+        margin-bottom: var(--space-lg);
         text-align: center;
-        width: 100%;
     }
+    
     .kontakt-infos {
-        font-size: 1.3rem;
-        color: #FF13F0;
-        margin-bottom: 2.5rem;
+        font-size: 1.25rem;
+        color: var(--text-secondary);
+        margin-bottom: var(--space-xl);
         text-align: center;
-        width: 100%;
+        max-width: 800px;
+        line-height: 1.7;
     }
+    
+    /* ===== CONTACT CARDS - PREMIUM ===== */
     .kontakt-links {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
-        grid-template-rows: auto auto;
-        gap: 2.5rem;
-        margin-bottom: 3.5rem;
+        gap: var(--space-lg);
         width: 100%;
-        justify-items: center;
+        max-width: 1200px;
     }
-    .kontakt-card,
-    .adresse-card {
-        background: #140013;
-        border-radius: 1.2rem;
-        box-shadow: 0 2px 32px rgba(255,19,240,0.07);
+    
+    .kontakt-card {
+        background: var(--bg-card);
+        border-radius: var(--radius-lg);
+        box-shadow: var(--shadow-md);
+        border: 1px solid rgba(255, 20, 147, 0.1);
+        padding: var(--space-lg);
         display: flex;
         flex-direction: column;
         align-items: center;
-        justify-content: center;
         text-align: center;
-        min-width: 260px;
-        max-width: 370px;
-        width: 100%;
-        height: 130px;
-        padding: 1.2rem;
+        transition: all 0.3s var(--ease-smooth);
+        position: relative;
+        overflow: hidden;
     }
+    
+    .kontakt-card::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(135deg, rgba(255, 20, 147, 0.1), transparent);
+        opacity: 0;
+        transition: opacity 0.3s var(--ease-smooth);
+    }
+    
+    .kontakt-card:hover {
+        transform: translateY(-8px) scale(1.02);
+        box-shadow: var(--shadow-glow);
+        border-color: rgba(255, 20, 147, 0.3);
+    }
+    
+    .kontakt-card:hover::before {
+        opacity: 1;
+    }
+    
     .card-title {
-        color: #e213db;
-        font-size: 1.15rem;
-        text-align: center;
-        margin: 0 0 0.16em 0;
-        padding: 0;
-        width: 100%;
-        display: flex;
-        justify-content: center;
-    }
-    .kontakt-card strong,
-    .adresse-card strong {
-        margin: 0;
-        padding: 0;
-    }
-    .kontakt-card a,
-    .adresse-link {
-        color: #FF13F0;
-        border-bottom: none;
+        color: var(--pink-primary);
+        font-size: 1.25rem;
         font-weight: 600;
-        font-size: 1.13rem;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 0.7em;
-        padding: 0;
-        margin: 0;
-        text-align: center;
-        width: 100%;
+        margin-bottom: var(--space-sm);
+        z-index: 1;
     }
-    .kontakt-card svg,
-    .adresse-link svg {
-        width: 1.35em;
-        height: 1.35em;
-        fill: #FF13F0;
-        margin-right: 0.33em;
-        vertical-align: middle;
-        transition: fill 0.2s;
+    
+    .kontakt-card a {
+        color: var(--text-secondary);
+        font-weight: 500;
+        font-size: 1.1rem;
+        gap: var(--space-sm);
+        z-index: 1;
+        transition: all 0.3s var(--ease-smooth);
     }
-    .kontakt-card a:hover,
-    .kontakt-card a:focus,
-    .adresse-link:hover,
-    .adresse-link:focus {
-        color: #e213db;
+    
+    .kontakt-card:hover a {
+        color: var(--pink-hover);
     }
-    .kontakt-card a:hover svg,
-    .kontakt-card a:focus svg,
-    .adresse-link:hover svg,
-    .adresse-link:focus svg {
-        fill: #e213db;
+    
+    .kontakt-card svg {
+        width: 2.5rem;
+        height: 2.5rem;
+        fill: var(--pink-primary);
+        margin-bottom: var(--space-sm);
+        transition: all 0.3s var(--ease-smooth);
+        z-index: 1;
     }
+    
+    .kontakt-card:hover svg {
+        fill: var(--pink-hover);
+        transform: scale(1.1) rotate(5deg);
+    }
+    
     .social-address-row {
         grid-column: 1 / span 3;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--space-lg);
+    }
+    
+    /* ===== FOOTER ===== */
+    footer {
+        background: var(--bg-card);
+        border-top: 1px solid rgba(255, 20, 147, 0.15);
+        padding: var(--space-2xl) var(--space-lg) var(--space-lg);
+        margin-top: auto;
+    }
+    
+    .footer-content {
+        max-width: 1400px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: var(--space-xl);
+    }
+    
+    .footer-section h3 {
+        font-size: 1.5rem;
+        color: var(--pink-primary);
+        margin-bottom: var(--space-sm);
+    }
+    
+    .footer-section h4 {
+        font-size: 1.25rem;
+        margin-bottom: var(--space-sm);
+        color: var(--text-primary);
+    }
+    
+    .footer-tagline {
+        color: var(--pink-hover);
+        font-style: italic;
+        margin-bottom: var(--space-sm);
+    }
+    
+    .footer-section p {
+        color: var(--text-secondary);
+        line-height: 1.7;
+    }
+    
+    .footer-links {
         display: flex;
-        gap: 2.5rem;
-        justify-content: center;
-        align-items: flex-start;
-        width: 100%;
+        gap: var(--space-md);
+        margin-top: var(--space-sm);
+        flex-wrap: wrap;
     }
-
-    @media (max-width: 900px) {
-        header {
-            margin: 2rem auto 1.5rem auto;
+    
+    .footer-links a::before {
+        content: '→';
+        position: absolute;
+        left: -20px;
+        opacity: 0;
+        transition: all 0.3s var(--ease-smooth);
+    }
+    
+    .footer-links a:hover {
+        transform: translateX(5px);
+    }
+    
+    .footer-links a:hover::before {
+        left: -15px;
+        opacity: 1;
+    }
+    
+    .footer-bottom {
+        max-width: 1400px;
+        margin: var(--space-xl) auto 0;
+        padding-top: var(--space-lg);
+        border-top: 1px solid rgba(255, 20, 147, 0.1);
+        text-align: center;
+    }
+    
+    .footer-bottom p {
+        color: var(--text-muted);
+        font-size: 0.875rem;
+    }
+    
+    /* ===== TABLET ===== */
+    @media (max-width: 1000px) {
+        .kontakt-links {
+            grid-template-columns: repeat(2, 1fr);
         }
-        nav {
-            gap: 2rem;
-            font-size: 1.1rem;
-        }
-        h1 {
-            font-size: 2.4rem;
-            margin-bottom: 2rem;
-        }
-        .kontakt-infos {
-            font-size: 1.15rem;
-            padding: 0 0.5rem;
+        
+        .social-address-row {
+            grid-column: 1 / span 2;
         }
     }
-
-    /* iPhone / Handy: Hamburger + gestapelte Karten */
+    
+    /* ===== MOBILE ===== */
     @media (max-width: 700px) {
         header {
-            margin: 1.5rem auto;
-            padding: 0 1rem;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
+            margin: var(--space-md) auto var(--space-sm) auto;
+            padding: 0 var(--space-md);
+            width: 100%;
         }
-
+        
         .logo-img {
-            max-width: 150px;
-            height: auto;
+            max-width: 140px;
         }
-
+        
         nav {
-            position: absolute;
-            top: 76px;
-            right: 0;
+            position: fixed;
+            top: 0;
             left: 0;
-            margin: 0 auto;
-            max-width: 1600px;
-            width: 95%;
-            background-color: #0B0B13;
+            right: 0;
+            width: 100%;
+            height: 100vh;
+            background: rgba(10, 10, 20, 0.95);
+            backdrop-filter: blur(20px) saturate(180%);
             flex-direction: column;
             align-items: center;
-            gap: 1rem;
-            padding: 1rem 0 1.2rem 0;
-            border-radius: 0 0 1rem 1rem;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+            justify-content: center;
             display: none;
-            z-index: 20;
+            z-index: 150;
         }
-
+        
         nav a {
-            font-size: 1.1rem;
-            border-bottom: none;
+            font-size: 1.5rem;
         }
-
+        
+        nav a::after {
+            display: none;
+        }
+        
         .nav-toggle {
             display: block;
         }
-
+        
+        body.nav-open {
+            overflow: hidden;
+        }
+        
         body.nav-open nav {
             display: flex;
+            animation: fadeIn 0.3s ease;
         }
-
+        
         body.nav-open .nav-toggle span:nth-child(1) {
-            transform: translateY(7px) rotate(45deg);
+            transform: translateY(8px) rotate(45deg);
         }
+        
         body.nav-open .nav-toggle span:nth-child(2) {
             opacity: 0;
         }
+        
         body.nav-open .nav-toggle span:nth-child(3) {
-            transform: translateY(-7px) rotate(-45deg);
+            transform: translateY(-8px) rotate(-45deg);
         }
-
+        
         main {
-            width: 95%;
-            padding: 0 1rem;
-            margin-bottom: 2rem;
+            width: 100%;
+            padding: 0 var(--space-md);
         }
-
-        h1 {
-            font-size: 2.1rem;
-            margin-bottom: 1.6rem;
-        }
-
+        
         .kontakt-infos {
-            font-size: 1rem;
-            margin-bottom: 2rem;
-        }
-
-        .kontakt-links {
-            display: block;
-            margin-bottom: 2.5rem;
-        }
-
-        .kontakt-card,
-        .adresse-card {
-            width: calc(100% - 2rem);
-            max-width: 420px;
-            min-width: 0;
-            height: auto;
-            padding: 1rem 0.8rem;
-            margin: 0 auto 1.4rem auto;
-        }
-
-        .card-title {
             font-size: 1.05rem;
         }
-
-        .kontakt-card a,
-        .adresse-link {
-            font-size: 1rem;
-            flex-wrap: wrap;
-            row-gap: 0.4rem;
+        
+        .kontakt-links {
+            grid-template-columns: 1fr;
+            gap: var(--space-md);
         }
-
+        
         .social-address-row {
-            display: block;
+            grid-column: 1;
+            grid-template-columns: 1fr;
+        }
+        
+        footer {
+            padding: var(--space-xl) var(--space-md) var(--space-md);
+        }
+        
+        .footer-content {
+            grid-template-columns: 1fr;
+            text-align: center;
+        }
+        
+        .footer-links {
+            justify-content: center;
+        }
+        
+        .footer-links a::before {
+            display: none;
         }
     }
 </style>
 </head>
 <body>
 
+<div class="scroll-progress" id="scrollProgress"></div>
+
 <header>
     <a href="index.html" aria-label="Startseite">
-        <img src="bilder/logo.png" alt="logo" class="logo-img" />
+        <img src="bilder/logo.png" alt="ashon logo" class="logo-img" />
     </a>
 
-    <!-- Hamburger-Button (nur Mobile per CSS sichtbar) -->
-    <button class="nav-toggle" aria-label="Navigation öffnen" onclick="document.body.classList.toggle('nav-open')">
+    <button class="nav-toggle" aria-label="Navigation" onclick="toggleNav()">
         <span></span>
         <span></span>
         <span></span>
     </button>
 
-    <nav aria-label="Hauptnavigation">
+    <nav>
         <a href="ueber-uns.html">Team</a>
         <a href="preise.html">Preise</a>
         <a href="socials.html">Galerie</a>
@@ -364,53 +518,115 @@
 </header>
 
 <main>
-    <h1>Kontakt</h1>
-    <div class="kontakt-infos">
+    <h1 class="reveal">Kontakt</h1>
+    <div class="kontakt-infos reveal">
         Wir sind jederzeit erreichbar – gerne per Telefon, WhatsApp, klassischer Nachricht oder direkt via Instagram.<br>
         Vereinbaren Sie bequem einen Termin oder stellen Sie Ihre Anfrage!
     </div>
+    
     <div class="kontakt-links">
-        <div class="kontakt-card">
-            <strong class="card-title">Telefon</strong>
-            <a href="tel:+41796457155">
-                <svg viewBox="0 0 24 24"><path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1C10.72 21 3 13.28 3 4c0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.34.03.74-.25 1.02l-2.2 2.2z"/></svg>
-                +41 79 645 71 55
-            </a>
+        <div class="kontakt-card reveal">
+            <svg viewBox="0 0 24 24"><path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1C10.72 21 3 13.28 3 4c0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.34.03.74-.25 1.02l-2.2 2.2z"/></svg>
+            <div class="card-title">Telefon</div>
+            <a href="tel:+41796457155">+41 79 645 71 55</a>
         </div>
-        <div class="kontakt-card">
-            <strong class="card-title">WhatsApp</strong>
-            <a href="https://wa.me/41796457155" target="_blank" rel="noopener noreferrer">
-                <svg viewBox="0 0 24 24"><path d="M12.04 2.004A10 10 0 0 0 2 12.003c0 1.77.46 3.47 1.32 4.98l-1.4 5.12 5.25-1.38A9.99 9.99 0 0 0 12.04 22C17.53 22 22 17.524 22 12.003a9.998 9.998 0 0 0-9.96-9.999zM12.04 20c-1.53 0-3.02-.4-4.31-1.16l-.31-.19-3.11.82.83-3.03-.2-.32A7.986 7.986 0 0 1 4.04 12.003 8 8 0 1 1 20.05 12c0 4.41-3.58 8-8.01 8zm4.44-6.65c-.24-.12-1.41-.69-1.63-.76-.22-.07-.38-.12-.54.12-.17.24-.61.76-.74.92-.13.15-.27.17-.51.06-.24-.12-1.01-.37-1.93-1.19-.71-.62-1.18-1.39-1.32-1.62-.13-.23-.01-.36.11-.48.11-.11.25-.3 .37-.45.12-.15.16-.26.24-.44.08-.18.04-.33-.02-.45-.06-.12-.53-1.28-.73-1.76-.19-.46-.39-.4-.54-.41-.13-.01-.28-.01-.44-.01-.15 0-.4.06-.63.29-.22.22-.86.84-.86 2.06s.89 2.39 1.01 2.56c.12.17 1.75 2.67 4.39 3.64C13.3 19.01 14 19.15 14.59 19.18c.36.02.77 0 1.17-.38.33-.32 1.08-1.05 1.23-2.07.13-.91-.13-1-.43-1.12z"/></svg>
-                Nachricht via WhatsApp
-            </a>
+        
+        <div class="kontakt-card reveal">
+            <svg viewBox="0 0 24 24"><path d="M12.04 2.004A10 10 0 0 0 2 12.003c0 1.77.46 3.47 1.32 4.98l-1.4 5.12 5.25-1.38A9.99 9.99 0 0 0 12.04 22C17.53 22 22 17.524 22 12.003a9.998 9.998 0 0 0-9.96-9.999zM12.04 20c-1.53 0-3.02-.4-4.31-1.16l-.31-.19-3.11.82.83-3.03-.2-.32A7.986 7.986 0 0 1 4.04 12.003 8 8 0 1 1 20.05 12c0 4.41-3.58 8-8.01 8zm4.44-6.65c-.24-.12-1.41-.69-1.63-.76-.22-.07-.38-.12-.54.12-.17.24-.61.76-.74.92-.13.15-.27.17-.51.06-.24-.12-1.01-.37-1.93-1.19-.71-.62-1.18-1.39-1.32-1.62-.13-.23-.01-.36.11-.48.11-.11.25-.3.37-.45.12-.15.16-.26.24-.44.08-.18.04-.33-.02-.45-.06-.12-.53-1.28-.73-1.76-.19-.46-.39-.4-.54-.41-.13-.01-.28-.01-.44-.01-.15 0-.4.06-.63.29-.22.22-.86.84-.86 2.06s.89 2.39 1.01 2.56c.12.17 1.75 2.67 4.39 3.64C13.3 19.01 14 19.15 14.59 19.18c.36.02.77 0 1.17-.38.33-.32 1.08-1.05 1.23-2.07.13-.91-.13-1-.43-1.12z"/></svg>
+            <div class="card-title">WhatsApp</div>
+            <a href="https://wa.me/41796457155" target="_blank" rel="noopener noreferrer">Nachricht via WhatsApp</a>
         </div>
-        <div class="kontakt-card">
-            <strong class="card-title">Nachricht (SMS)</strong>
-            <a href="sms:+41796457155">
-                <svg viewBox="0 0 24 24"><path d="M20 2H4C2.9 2 2 2.9 2 4v20l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-2 9h-4v4h-4v-4H4V6h16v5z"/></svg>
-                SMS senden
-            </a>
+        
+        <div class="kontakt-card reveal">
+            <svg viewBox="0 0 24 24"><path d="M20 2H4C2.9 2 2 2.9 2 4v20l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-2 9h-4v4h-4v-4H4V6h16v5z"/></svg>
+            <div class="card-title">Nachricht (SMS)</div>
+            <a href="sms:+41796457155">SMS senden</a>
         </div>
+        
         <div class="social-address-row">
-            <div class="kontakt-card">
-                <strong class="card-title">Instagram</strong>
-                <a href="https://www.instagram.com/sophie.tzionas/" target="_blank" rel="noopener noreferrer">
-                    <svg viewBox="0 0 24 24"><path d="M7.75 2h8.5A5.75 5.75 0 0122 7.75v8.5A5.75 5.75 0 0116.25 22h-8.5A5.75 5.75 0 012 16.25v-8.5A5.75 5.75 0 017.75 2zm0 1.5A4.25 4.25 0 003.5 7.75v8.5A4.25 4.25 0 007.75 20.5h8.5a4.25 4.25 0 004.25-4.25v-8.5a4.25 4.25 0 00-4.25-4.25h-8.5zm8.75 3a1 1 0 110 2 1 1 0 010-2zM12 7a5 5 0 110 10 5 5 0 010-10zm0 1.5a3.5 3.5 0 100 7 3.5 3.5 0 000-7z"/></svg>
-                    Schreibe über Instagram
-                </a>
+            <div class="kontakt-card reveal">
+                <svg viewBox="0 0 24 24"><path d="M7.75 2h8.5A5.75 5.75 0 0122 7.75v8.5A5.75 5.75 0 0116.25 22h-8.5A5.75 5.75 0 012 16.25v-8.5A5.75 5.75 0 017.75 2zm0 1.5A4.25 4.25 0 003.5 7.75v8.5A4.25 4.25 0 007.75 20.5h8.5a4.25 4.25 0 004.25-4.25v-8.5a4.25 4.25 0 00-4.25-4.25h-8.5zm8.75 3a1 1 0 110 2 1 1 0 010-2zM12 7a5 5 0 110 10 5 5 0 010-10zm0 1.5a3.5 3.5 0 100 7 3.5 3.5 0 000-7z"/></svg>
+                <div class="card-title">Instagram</div>
+                <a href="https://www.instagram.com/sophie.tzionas/" target="_blank" rel="noopener noreferrer">Schreibe über Instagram</a>
             </div>
-            <div class="adresse-card">
-                <strong class="card-title">Adresse</strong>
-                <a class="adresse-link" href="https://www.google.com/maps?q=Usterstrasse+21,+8614+Bertschikon" target="_blank" rel="noopener noreferrer">
-                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C7.031 2 2.997 6.043 3 11.014 3.003 16.529 10.443 21.61 11.045 22.031a1 1 0 0 0 1.054 0C13.557 21.61 20.997 16.531 21 11.014 21.003 6.043 16.969 2 12 2zm0 2c4.064 0 7.008 2.963 7 7.014-.003 4.03-6.102 8.538-7 9.165-.9-.627-6.997-5.158-7-9.165C4.991 6.963 7.933 4 12 4zm0 3a3 3 0 1 0 0 6 3 3 0 0 0 0-6zm0 2a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/></svg>
-                    <span>
-                        Usterstrasse 21<br>8614 Bertschikon
-                    </span>
+            
+            <div class="kontakt-card reveal">
+                <svg viewBox="0 0 24 24"><path d="M12 2C7.031 2 2.997 6.043 3 11.014 3.003 16.529 10.443 21.61 11.045 22.031a1 1 0 0 0 1.054 0C13.557 21.61 20.997 16.531 21 11.014 21.003 6.043 16.969 2 12 2zm0 2c4.064 0 7.008 2.963 7 7.014-.003 4.03-6.102 8.538-7 9.165-.9-.627-6.997-5.158-7-9.165C4.991 6.963 7.933 4 12 4zm0 3a3 3 0 1 0 0 6 3 3 0 0 0 0-6zm0 2a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/></svg>
+                <div class="card-title">Adresse</div>
+                <a href="https://www.google.com/maps?q=Usterstrasse+21,+8614+Bertschikon" target="_blank" rel="noopener noreferrer">
+                    Usterstrasse 21<br>8614 Bertschikon
                 </a>
             </div>
         </div>
     </div>
 </main>
+
+<footer>
+    <div class="footer-content">
+        <div class="footer-section">
+            <h3>ashon</h3>
+            <p class="footer-tagline">be beauty be yourself.</p>
+            <p>Ihre exklusive Hair Boutique im Zürcher Oberland für Style, Beauty und Wohlbefinden.</p>
+        </div>
+        <div class="footer-section">
+            <h4>Öffnungszeiten</h4>
+            <p>
+                Montag - Freitag: 9:00 - 18:30<br>
+                Samstag: 9:00 - 16:00<br>
+                Sonntag: Geschlossen
+            </p>
+        </div>
+        <div class="footer-section">
+            <h4>Kontakt</h4>
+            <p>
+                Telefon: +41 79 645 71 55<br>
+                Usterstrasse 21<br>
+                8614 Bertschikon
+            </p>
+            <div class="footer-links">
+                <a href="kontakt.html">Kontaktformular</a>
+                <a href="https://www.instagram.com/sophie.tzionas/" target="_blank" rel="noopener noreferrer">Instagram</a>
+            </div>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>&copy; 2025 ashon Hair Boutique. Alle Rechte vorbehalten.</p>
+    </div>
+</footer>
+
+<script>
+// Scroll Progress
+window.addEventListener('scroll', () => {
+    const winScroll = document.documentElement.scrollTop;
+    const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    const scrolled = (winScroll / height) * 100;
+    document.getElementById('scrollProgress').style.width = scrolled + '%';
+});
+
+// Scroll Reveal
+const revealElements = document.querySelectorAll('.reveal');
+const revealOnScroll = () => {
+    revealElements.forEach(el => {
+        const elementTop = el.getBoundingClientRect().top;
+        if (elementTop < window.innerHeight - 100) {
+            el.classList.add('active');
+        }
+    });
+};
+window.addEventListener('scroll', revealOnScroll);
+window.addEventListener('load', revealOnScroll);
+
+// Mobile Nav
+function toggleNav() {
+    document.body.classList.toggle('nav-open');
+}
+
+document.querySelectorAll('nav a').forEach(link => {
+    link.addEventListener('click', () => {
+        document.body.classList.remove('nav-open');
+    });
+});
+</script>
 
 </body>
 </html>
